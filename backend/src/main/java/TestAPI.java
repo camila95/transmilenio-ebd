@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 import javax.persistence.EntityManager;
 import javax.servlet.MultipartConfigElement;
 
-import models.Test;
+import modelos.Test;
 
 public class TestAPI {
 
