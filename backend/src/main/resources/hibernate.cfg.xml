@@ -1,0 +1,15 @@
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@0.0.0.0:1521/PDB1</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
+        <property name="hibernate.connection.username">transmilenio</property>
+        <property name="hibernate.connection.password">Oracle123</property>
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property> 
+        <property name="show_sql">true</property>
+        <property name="transaction.factory_class">
+            org.hibernate.transaction.JDBCTransactionFactory
+        </property>
+        <property name="hbm2ddl.auto">update</property>
+        <mapping class="models.Test"/>
+    </session-factory>
+</hibernate-configuration>

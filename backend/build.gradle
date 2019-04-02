@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'application'
+    //id 'com.github.johnrengelman.shadow' version '1.2.2'
+}
+
+sourceCompatibility = 1.8
+
+mainClassName = 'HelloSpark'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile 'com.sparkjava:spark-core:2.2'
+    compile 'com.twilio.sdk:twilio-java-sdk:4.4.5'
+    compile 'org.slf4j:slf4j-simple:1.7.25'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.3.7.Final'
+    compile 'com.oracle:ojdbc8:12.2.0.1'
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
+    compile 'com.sun.xml.bind:jaxb-core:2.2.11'
+    compile 'com.sun.xml.bind:jaxb-impl:2.2.11'
+    compile 'javax.activation:activation:1.1.1' 
+}
