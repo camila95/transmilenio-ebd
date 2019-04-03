@@ -10,6 +10,8 @@ import { EncabezadoComponent } from './components/encabezado/encabezado.componen
 import { DropdownModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EstacionEditarComponent } from './components/estacion-editar/estacion-editar.component';
+import { EstacionConsultarComponent } from './components/estacion-consultar/estacion-consultar.component';
+import { EstacionEliminarComponent } from './components/estacion-eliminar/estacion-eliminar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { EstacionEditarComponent } from './components/estacion-editar/estacion-e
     FooterComponent,
     InicioComponent,
     EncabezadoComponent,
-    EstacionEditarComponent
+    EstacionEditarComponent,
+    EstacionConsultarComponent,
+    EstacionEliminarComponent
   ],
   imports: [
     BrowserModule,
