@@ -7,12 +7,26 @@ import javax.persistence.EntityManager;
 import javax.servlet.MultipartConfigElement;
 
 import modelos.Test;
+import apis.*;
+
+import com.google.gson.Gson;
 
 public class TestAPI {
 
     public static void main(String[] args) {
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        
+        after((req, res) -> {
+            res.type("application/json");
+        });
+        path("/api/", () -> {
+            OperadorAPI.routes();
+        });
+        /*get("/test", (req, res) -> {
+          res.type("application/json");
+          return new Gson().toJson(
+            new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(ControladorTest.get(1))));
+          });*/
+        /* SessionFactory sf = new Configuration().configure().buildSessionFactory();
+
         get("/", (req, res) -> {
             EntityManager session = sf.createEntityManager();
             try {
@@ -35,6 +49,6 @@ public class TestAPI {
                     session.close();
                 }
             }
-        });
+        }); */
     }
 }
