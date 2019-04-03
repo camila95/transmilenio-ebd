@@ -9,9 +9,9 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { EncabezadoComponent } from './components/encabezado/encabezado.component';
 import { DropdownModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EstacionEditarComponent } from './components/estacion-editar/estacion-editar.component';
-import { EstacionConsultarComponent } from './components/estacion-consultar/estacion-consultar.component';
-import { EstacionEliminarComponent } from './components/estacion-eliminar/estacion-eliminar.component';
+import { EstacionCrearComponent } from './components/estacion/estacion-crear/estacion-crear.component';
+import { EstacionConsultarComponent } from './components/estacion/estacion-consultar/estacion-consultar.component';
+import { MaterialModule } from 'src/material.module';
 
 @NgModule({
   declarations: [
@@ -20,16 +20,16 @@ import { EstacionEliminarComponent } from './components/estacion-eliminar/estaci
     FooterComponent,
     InicioComponent,
     EncabezadoComponent,
-    EstacionEditarComponent,
-    EstacionConsultarComponent,
-    EstacionEliminarComponent
+    EstacionCrearComponent,
+    EstacionConsultarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     DropdownModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],
