@@ -1,6 +1,7 @@
 package modelos;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.github.javafaker.Faker;
 
 @Entity
 @Table(name = "OPERADOR")
@@ -122,5 +125,32 @@ public class Operador implements java.io.Serializable {
 
     public void setRutaAlimens(Set<RutaAlimen> rutaAlimens) {
         this.rutaAlimens = rutaAlimens;
+    }
+
+    public HashMap<String, Object> toMap() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("idOperador", this.idOperador);
+        map.put("nombre", this.nombre);
+        map.put("telefono", this.telefono);
+        map.put("direccion", this.direccion);
+        map.put("representante", this.representante);
+        map.put("paginaWeb", this.paginaWeb);
+        map.put("troncals", this.troncals);
+        map.put("rutaAlimens", this.rutaAlimens);
+        return map;
+    }
+
+    public static Operador fake() {
+        Operador operador = new Operador();
+        Faker faker = new Faker();
+        operador.setNombre(faker.name().fullName());
+        operador.setTelefono(faker.phoneNumber().cellPhone());
+        operador.setDireccion(faker.address().fullAddress());
+        if (operador.getDireccion().length() > 45) {
+            operador.setDireccion(operador.getDireccion().substring(0, 45));
+        }
+        operador.setRepresentante(faker.name().fullName());
+        operador.setPaginaWeb(faker.internet().domainName());
+        return operador;
     }
 }
