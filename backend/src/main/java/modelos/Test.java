@@ -1,12 +1,14 @@
 package modelos;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Test")
-public class Test {
+public class Test implements Serializable{
     int id;
     String descripcion;
 
