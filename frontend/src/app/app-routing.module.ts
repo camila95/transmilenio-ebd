@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EstacionComponent } from './components/estacion/estacion.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { EstacionEditarComponent } from './components/estacion-editar/estacion-editar.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
-  { path: 'estaciones/crear', component: EstacionComponent }
+  { path: 'estaciones/crear', component: EstacionComponent },
+  { path: 'estaciones/editar', component: EstacionEditarComponent }
 ];
 
 @NgModule({

@@ -1,18 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/primeng';
-import { Estacion } from 'src/app/models/estacion';
 
 @Component({
-  selector: 'app-estacion',
-  templateUrl: './estacion.component.html',
-  styleUrls: ['./estacion.component.css']
+  selector: 'app-estacion-editar',
+  templateUrl: './estacion-editar.component.html',
+  styleUrls: ['./estacion-editar.component.css']
 })
-export class EstacionComponent implements OnInit {
-
+export class EstacionEditarComponent implements OnInit {
   listaTipoEstacion: SelectItem[] = [];
   tipoEstacionSelected: string = null;//Estacion
   items: SelectItem[] = [];
-
   constructor() {
     //realizar consulta
     this.listaTipoEstacion.push({ label: "Seleccionar", value: 0 });

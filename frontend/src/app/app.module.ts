@@ -9,6 +9,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { EncabezadoComponent } from './components/encabezado/encabezado.component';
 import { DropdownModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EstacionEditarComponent } from './components/estacion-editar/estacion-editar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EstacionComponent,
     FooterComponent,
     InicioComponent,
-    EncabezadoComponent
+    EncabezadoComponent,
+    EstacionEditarComponent
   ],
   imports: [
     BrowserModule,
