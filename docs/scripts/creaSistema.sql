@@ -58,8 +58,6 @@ COMMENT ON COLUMN OPERADOR.DIRECCION IS
 	'Direccion de la empresa operadora';
 COMMENT ON COLUMN OPERADOR.REPRESENTANTE IS
 	'Nombre del representante lega de la empresa operadora';
-COMMENT ON COLUMN OPERADOR.EMAIL IS
-	'Correo Electronico de la empresa operadora';
 COMMENT ON COLUMN OPERADOR.PAGINA_WEB IS
 	'Url de la paina web de la empresa operadora';	
 	
@@ -117,8 +115,8 @@ CREATE TABLE ESTACION
    LOCALIDAD            VARCHAR2(30)         NOT NULL,
    LATITUD              VARCHAR2(10)         ,
    LONGITUD             VARCHAR2(10)         ,
-   ESTA_INCIAL          NUMBER               NOT NULL,
-   ESTA_FINAL           NUMBER               NOT NULL,
+   ESTA_INCIAL          NUMBER(1,0)          NOT NULL,
+   ESTA_FINAL           NUMBER(1,0)          NOT NULL,
    ORDEN                NUMBER               NOT NULL,
    ID_TRONCAL           INTEGER              NOT NULL,
    ID_TIPO_ESTA         INTEGER              NOT NULL
@@ -142,8 +140,6 @@ COMMENT ON COLUMN ESTACION.ESTA_FINAL IS
 	'Valor de la estacion final(1 SI, 0 NO)';
 COMMENT ON COLUMN ESTACION.ORDEN IS
 	'Orden de las estaciones en la troncal';
-COMMENT ON COLUMN ESTACION.ID_OPERADOR IS
-	'Identificacion del operador en las estaciones que salen las rutas alimentadoras';
 COMMENT ON COLUMN ESTACION.ID_TRONCAL IS
 	'Identificacion de la troncal a la que pertenece la estacion';
 COMMENT ON COLUMN ESTACION.ID_TIPO_ESTA IS
@@ -214,8 +210,8 @@ CREATE TABLE HORARIO
 (
    ID_HORARIO           INTEGER        NOT NULL,
    RANGO                VARCHAR2(1)    NOT NULL,
-   HORA_COMIENZO        DATE           NOT NULL,
-   HORA_FIN             DATE           NOT NULL
+   HORA_COMIENZO        TIMESTAMP      NOT NULL,
+   HORA_FIN             TIMESTAMP      NOT NULL
 );
 COMMENT ON TABLE HORARIO IS 'TABLA QUE ALMACENA LOS HORARIOS';
 COMMENT ON COLUMN HORARIO.ID_HORARIO IS
@@ -311,8 +307,6 @@ COMMENT ON COLUMN PARADERO.LONGITUD IS
 	'Longitud del paradero';
 COMMENT ON COLUMN PARADERO.ID_TIPO_PARADERO IS
 	'Identificacion del tipo de paradero';
-COMMENT ON COLUMN PARADERO.ID_RUTA_ALIMEN IS
-	'Identificacion de la ruta alimentadora que transita por el paradero';
 
 /*==============================================================*/
 /* Table: PAR_RUT_ALIM                                          */
