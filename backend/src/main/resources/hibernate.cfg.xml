@@ -1,4 +1,4 @@
-<hibernate-configuration>
+<!--<hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.url">jdbc:oracle:thin:@35.197.94.178:1521/PDB1</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
@@ -26,9 +26,9 @@
         <mapping class="modelos.Troncal"/>
         <mapping class="modelos.Estacion"/>
     </session-factory>
-</hibernate-configuration>
+</hibernate-configuration>-->
 
-<!--<hibernate-configuration>
+<hibernate-configuration>
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
@@ -36,5 +36,20 @@
     <property name="hibernate.connection.username">TRANSMI</property>
     <property name="hibernate.connection.password">Asdf1234$</property>
     <property name="show_sql">true</property>
+        <mapping class="modelos.Test"/>
+        <mapping class="modelos.ParaHora"/>
+        <mapping class="modelos.RutaHora"/>
+        <mapping class="modelos.Horario"/>
+        <mapping class="modelos.Paradero"/>
+        <mapping class="modelos.RutaAlimen"/>
+        <mapping class="modelos.Vagon"/>
+        <mapping class="modelos.Ruta"/>
+        <mapping class="modelos.RutaEsta"/>
+        <mapping class="modelos.TipoParadero"/>
+        <mapping class="modelos.TipoEstacion"/>
+        <mapping class="modelos.Operador"/>
+        <mapping class="modelos.ParRutAlim"/>
+        <mapping class="modelos.Troncal"/>
+        <mapping class="modelos.Estacion"/>
   </session-factory>
-</hibernate-configuration>-->
+</hibernate-configuration>
