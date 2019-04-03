@@ -6,9 +6,11 @@
     <li><a [routerLink]="'/estaciones/eliminar'"><i class="tiny material-icons left">Eliminar</i>Eliminar</a></li>
 </ul>
 <ul id="troncales" class="dropdown-content">
-  <li><a href="#!"> <i class="tiny material-icons left">add_circle_outline</i>Crear</a></li>
+  <li><a [routerLink]="'/troncal/crear'"> <i class="tiny material-icons left">add_circle_outline</i>Crear</a></li>
   <li class="divider"></li>
-  <li><a href="#!"><i class="tiny material-icons left">edit</i>Editar</a></li>
+  <li><a [routerLink]="'/troncal/editar'"><i class="tiny material-icons left">edit</i>Editar</a></li>
+  <li><a [routerLink]="'/troncal/consultar'"><i class="tiny material-icons left">Consultar</i>Consutar</a></li>
+  <li><a [routerLink]="'/troncal/eliminar'"><i class="tiny material-icons left">Eliminar</i>Eliminar</a></li>
 </ul>
 <ul id="rutas" class="dropdown-content">
   <li><a href="#!"> <i class="tiny material-icons left">add_circle_outline</i>Crear</a></li>
@@ -16,7 +18,7 @@
   <li><a href="#!"><i class="tiny material-icons left">edit</i>Editar</a></li>
 </ul>
 <ul id="datosMasivos" class="dropdown-content">
-  <li><a href="#!"> <i class="tiny material-icons left">note_add</i>Cargar Archivo</a></li>
+  <li><a [routerLink]="'/datos/cargararchivo'"> <i class="tiny material-icons left">note_add</i>Cargar Archivo</a></li>
   <li class="divider"></li>
   <li><a href="#!"><i class="tiny material-icons left">view_module</i>Generar Datos</a></li>
   <li class="divider"></li>
