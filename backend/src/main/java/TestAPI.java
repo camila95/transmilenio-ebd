@@ -19,6 +19,7 @@ public class TestAPI {
         });
         path("/api/", () -> {
             OperadorAPI.routes();
+            GeneracionMasivaAPI.routes();
         });
         /*get("/test", (req, res) -> {
           res.type("application/json");

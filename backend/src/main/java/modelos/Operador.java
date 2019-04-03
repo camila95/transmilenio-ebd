@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.github.javafaker.Faker;
+
 @Entity
 @Table(name = "OPERADOR")
 public class Operador implements java.io.Serializable {
@@ -140,6 +142,15 @@ public class Operador implements java.io.Serializable {
 
     public static Operador fake() {
         Operador operador = new Operador();
+        Faker faker = new Faker();
+        operador.setNombre(faker.name().fullName());
+        operador.setTelefono(faker.phoneNumber().cellPhone());
+        operador.setDireccion(faker.address().fullAddress());
+        if (operador.getDireccion().length() > 45) {
+            operador.setDireccion(operador.getDireccion().substring(0, 45));
+        }
+        operador.setRepresentante(faker.name().fullName());
+        operador.setPaginaWeb(faker.internet().domainName());
         return operador;
     }
 }
