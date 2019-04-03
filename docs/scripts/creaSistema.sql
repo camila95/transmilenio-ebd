@@ -115,8 +115,8 @@ CREATE TABLE ESTACION
    LOCALIDAD            VARCHAR2(30)         NOT NULL,
    LATITUD              VARCHAR2(10)         ,
    LONGITUD             VARCHAR2(10)         ,
-   ESTA_INCIAL          NUMBER               NOT NULL,
-   ESTA_FINAL           NUMBER               NOT NULL,
+   ESTA_INCIAL          NUMBER(1,0)          NOT NULL,
+   ESTA_FINAL           NUMBER(1,0)          NOT NULL,
    ORDEN                NUMBER               NOT NULL,
    ID_TRONCAL           INTEGER              NOT NULL,
    ID_TIPO_ESTA         INTEGER              NOT NULL
@@ -210,8 +210,8 @@ CREATE TABLE HORARIO
 (
    ID_HORARIO           INTEGER        NOT NULL,
    RANGO                VARCHAR2(1)    NOT NULL,
-   HORA_COMIENZO        DATE           NOT NULL,
-   HORA_FIN             DATE           NOT NULL
+   HORA_COMIENZO        TIMESTAMP      NOT NULL,
+   HORA_FIN             TIMESTAMP      NOT NULL
 );
 COMMENT ON TABLE HORARIO IS 'TABLA QUE ALMACENA LOS HORARIOS';
 COMMENT ON COLUMN HORARIO.ID_HORARIO IS
