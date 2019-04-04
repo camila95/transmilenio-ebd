@@ -33,6 +33,9 @@ public class TestAPI {
         path("/tipo-estaciones", () -> {
             TipoEstacionAPI.routes();
         });
+        path("/troncales", () -> {
+            TroncalAPI.routes();
+        });
 
         /*
          * get("/test", (req, res) -> { res.type("application/json"); return new
