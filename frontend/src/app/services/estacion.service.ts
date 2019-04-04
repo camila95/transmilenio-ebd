@@ -20,8 +20,9 @@ export class EstacionService {
       'user_id': sessionStorage.getItem(USER_ID)
     });
     const options = new RequestOptions({ headers: headers });
-    return this.http.get(URL_BASE_API_REST + 'estacion/crearEstacion/' + idTipoEstacion, options);
+    return this.http.get(URL_BASE_API_REST + 'estacion/buscarEstacion/' + idTipoEstacion, options);
   }
+
 
   public createEstacion(estacion: Estacion): Observable<Response> {
     const headers = new Headers({
@@ -33,6 +34,8 @@ export class EstacionService {
     const options = new RequestOptions({ headers: headers });
     return this.http.post(URL_BASE_API_REST + 'estacion/crearEstacion/', estacion, options);
   }
+
+
 
   public updateEstacion(estacion: Estacion): Observable<Response> {
     const headers = new Headers({
