@@ -8,7 +8,8 @@ import { EstacionConsultarComponent } from './components/estacion/estacion-consu
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
-  { path: 'estaciones/crear', component: EstacionCrearComponent }
+  { path: 'estacion/administrar', component: EstacionCrearComponent },
+  { path: 'estacion/consultar', component: EstacionConsultarComponent }
 ];
 
 @NgModule({

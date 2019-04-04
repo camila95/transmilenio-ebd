@@ -22,6 +22,7 @@ import { MaterialModule } from 'src/material.module';
     EncabezadoComponent,
     EstacionCrearComponent,
     EstacionConsultarComponent
+
   ],
   imports: [
     BrowserModule,

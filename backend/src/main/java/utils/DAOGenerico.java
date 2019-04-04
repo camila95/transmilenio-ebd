@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 import org.hibernate.ObjectNotFoundException;
 
-
 public class DAOGenerico<T> {
 
     private Class<T> objClass;

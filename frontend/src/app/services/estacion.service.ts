@@ -5,14 +5,14 @@ import { Estacion } from '../models/estacion';
 import { TOKEN, APLICACION_ID, USER_ID, URL_BASE_API_REST } from '../utils/constantes';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EstacionService {
 
   constructor(private http: Http) { }
 
 
-  public getEstacionByTipoEstacion(idTipoEstacion: string): Observable<Response> {
+  public getEstacionByTipoEstacion(idTipoEstacion: number): Observable<Response> {
     const headers = new Headers({
       'Content-Type': 'application/json; charset=UTF-8',
       'access_token': sessionStorage.getItem(TOKEN),
@@ -36,7 +36,6 @@ export class EstacionService {
   }
 
 
-
   public updateEstacion(estacion: Estacion): Observable<Response> {
     const headers = new Headers({
       'Content-Type': 'application/json; charset=UTF-8',
@@ -45,8 +44,9 @@ export class EstacionService {
       'user_id': sessionStorage.getItem(USER_ID)
     });
     const options = new RequestOptions({ headers: headers });
-    return this.http.post(URL_BASE_API_REST + 'estacion/crearEstacion/', estacion, options);
+    return this.http.put(URL_BASE_API_REST + 'estacion/editarEstacion/', estacion, options);
   }
+
 
   public deleteEstacion(estacion: Estacion): Observable<Response> {
     const headers = new Headers({
@@ -56,7 +56,7 @@ export class EstacionService {
       'user_id': sessionStorage.getItem(USER_ID)
     });
     const options = new RequestOptions({ headers: headers });
-    return this.http.get(URL_BASE_API_REST + 'estacion/crearEstacion/' + estacion.idEstacion, options);
+    return this.http.delete(URL_BASE_API_REST + 'estacion/borrarEstacion/' + estacion, options);
   }
 
 }
