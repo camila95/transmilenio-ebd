@@ -20,7 +20,7 @@ export class TipoEstacionService {
             'user_id': sessionStorage.getItem(USER_ID)
         });
         const options = new RequestOptions({ headers: headers });
-        return this.http.get(URL_BASE_API_REST + 'tipoEstacion/getAll', options);
+        return this.http.get(URL_BASE_API_REST + 'tipo-estaciones', options);
     }
 
 

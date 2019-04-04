@@ -3,9 +3,12 @@ package utils;
 import utils.HibernateUtil;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.EntityManager;
-import org.hibernate.ObjectNotFoundException;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 public class DAOGenerico<T> {
 

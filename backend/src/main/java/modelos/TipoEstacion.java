@@ -1,6 +1,7 @@
 package modelos;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.github.javafaker.Faker;
 
 @Entity
 @Table(name = "TIPO_ESTACION")
@@ -63,6 +66,24 @@ public class TipoEstacion implements java.io.Serializable {
 
     public void setEstacions(Set<Estacion> estacions) {
         this.estacions = estacions;
+    }
+
+    public HashMap<String, Object> toMap() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("idTipoEsta", this.idTipoEsta);
+        map.put("nombre", this.nombre);
+        map.put("estacions", this.estacions);
+        return map;
+    }
+
+    public static TipoEstacion fake() {
+        TipoEstacion tipoEstacion = new TipoEstacion();
+        Faker faker = new Faker();
+        tipoEstacion.setNombre(faker.name().fullName());
+        if (tipoEstacion.getNombre().length() > 30) {
+            tipoEstacion.setNombre(tipoEstacion.getNombre().substring(0, 30));
+        }
+        return tipoEstacion;
     }
 
 }

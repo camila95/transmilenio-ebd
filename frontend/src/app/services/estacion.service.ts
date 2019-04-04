@@ -20,7 +20,7 @@ export class EstacionService {
       'user_id': sessionStorage.getItem(USER_ID)
     });
     const options = new RequestOptions({ headers: headers });
-    return this.http.get(URL_BASE_API_REST + 'estacion/buscarEstacion/' + idTipoEstacion, options);
+    return this.http.get(URL_BASE_API_REST + 'estaciones/' + idTipoEstacion, options);
   }
 
 
@@ -32,7 +32,7 @@ export class EstacionService {
       'user_id': sessionStorage.getItem(USER_ID)
     });
     const options = new RequestOptions({ headers: headers });
-    return this.http.post(URL_BASE_API_REST + 'estacion/crearEstacion/', estacion, options);
+    return this.http.post(URL_BASE_API_REST + 'estaciones/', estacion, options);
   }
 
 
@@ -44,7 +44,7 @@ export class EstacionService {
       'user_id': sessionStorage.getItem(USER_ID)
     });
     const options = new RequestOptions({ headers: headers });
-    return this.http.put(URL_BASE_API_REST + 'estacion/editarEstacion/', estacion, options);
+    return this.http.put(URL_BASE_API_REST + 'estaciones/', estacion, options);
   }
 
 
@@ -56,7 +56,7 @@ export class EstacionService {
       'user_id': sessionStorage.getItem(USER_ID)
     });
     const options = new RequestOptions({ headers: headers });
-    return this.http.delete(URL_BASE_API_REST + 'estacion/borrarEstacion/' + estacion, options);
+    return this.http.delete(URL_BASE_API_REST + 'estaciones/' + estacion, options);
   }
 
 }
