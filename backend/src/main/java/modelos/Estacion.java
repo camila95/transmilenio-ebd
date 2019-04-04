@@ -1,6 +1,7 @@
 package modelos;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.github.javafaker.Faker;
 
 @Entity
 @Table(name = "ESTACION")
@@ -187,5 +190,49 @@ public class Estacion implements java.io.Serializable {
 
     public void setRutaAlimens(Set<RutaAlimen> rutaAlimens) {
         this.rutaAlimens = rutaAlimens;
+    }
+
+    public HashMap<String, Object> toMap() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("tipoEstacion", this.tipoEstacion);
+        map.put("troncal", this.troncal);
+        map.put("nombre", this.nombre);
+        map.put("direccion", this.direccion);
+        map.put("localidad", this.localidad);
+        map.put("latitud", this.latitud);
+        map.put("longitud", this.longitud);
+        map.put("estaIncial", this.estaIncial);
+        map.put("estaFinal", this.estaFinal);
+        map.put("orden", this.orden);
+        map.put("vagons", this.vagons);
+        map.put("rutaAlimens", this.rutaAlimens);
+        return map;
+    }
+
+    public static Estacion fake() {
+        Estacion estacion = new Estacion();
+        Faker faker = new Faker();
+        estacion.setNombre(faker.name().fullName());
+        if (estacion.getNombre().length() > 30) {
+            estacion.setNombre(estacion.getNombre().substring(0, 30));
+        }
+        estacion.setDireccion(faker.address().fullAddress());
+        if (estacion.getDireccion().length() > 30) {
+            estacion.setDireccion(estacion.getDireccion().substring(0, 30));
+        }
+        estacion.setLocalidad(faker.name().firstName());
+        if (estacion.getLocalidad().length() > 30) {
+            estacion.setLocalidad(estacion.getLocalidad().substring(0, 30));
+        }
+        estacion.setLatitud(faker.name().lastName());
+        if (estacion.getLatitud().length() > 30) {
+            estacion.setLatitud(estacion.getLatitud().substring(0, 30));
+        }
+        estacion.setLongitud(faker.name().lastName());
+        if (estacion.getLongitud().length() > 30) {
+            estacion.setLongitud(estacion.getLongitud().substring(0, 30));
+        }
+
+        return estacion;
     }
 }
