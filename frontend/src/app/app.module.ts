@@ -7,7 +7,6 @@ import { EstacionComponent } from './components/estacion/estacion.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { EncabezadoComponent } from './components/encabezado/encabezado.component';
-import { DropdownModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/material.module';
 import { TroncalComponent } from './components/troncal/troncal.component';
@@ -23,6 +22,12 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archivo.component';
 import { EstacionCrearComponent } from './components/estacion/estacion-crear/estacion-crear.component';
 import { EstacionConsultarComponent } from './components/estacion/estacion-consultar/estacion-consultar.component';
+<<<<<<< HEAD
+=======
+import { MaterialModule } from 'src/material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+>>>>>>> development
 
 @NgModule({
   declarations: [
@@ -49,9 +54,13 @@ import { EstacionConsultarComponent } from './components/estacion/estacion-consu
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    DropdownModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ToastrModule.forRoot({
+      timeOut: 7000,
+      preventDuplicates: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],

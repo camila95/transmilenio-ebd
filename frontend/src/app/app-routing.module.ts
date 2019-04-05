@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EstacionComponent } from './components/estacion/estacion.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { EstacionCrearComponent } from './components/estacion/estacion-crear/estacion-crear.component';
 import { EstacionConsultarComponent } from './components/estacion/estacion-consultar/estacion-consultar.component';
@@ -30,7 +29,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  providers: []
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

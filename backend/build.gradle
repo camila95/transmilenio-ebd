@@ -25,7 +25,8 @@ dependencies {
     compile 'javax.activation:activation:1.1.1'
     compile 'com.google.code.gson:gson:2.8.0'
     compile group: 'javax.inject', name: 'javax.inject', version: '1'
-    compile group: 'javax.ejb', name: 'javax.ejb-api', version: '3.2.2'
+    compile group: 'javax.ejb', name: 'javax.ejb-api', version: '3.2.2'    
     
     implementation 'com.github.javafaker:javafaker:0.17.2'    
+
 }
