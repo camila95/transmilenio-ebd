@@ -37,6 +37,10 @@ public class TestAPI {
             TroncalAPI.routes();
         });
 
+        path("/reporte", () -> {
+            ReporteAPI.routes();
+        });
+
         
         /*
          * get("/test", (req, res) -> { res.type("application/json"); return new
