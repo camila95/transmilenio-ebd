@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit {
-
-  constructor() { }
+  estaciones=['estacion1','estacion2','estacion3','estacion4'];
+  rutas=['ruta1','ruta2','ruta3','ruta4'];
+  constructor() {
+   }
 
   ngOnInit() {
   }

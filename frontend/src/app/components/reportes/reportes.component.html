@@ -1,20 +1,38 @@
+
+
+
+<legend id="leyenda">Reportes</legend>
 <p>
   Rerportes del sistema transmilenio- lista de rutas
 </p>
 
-<table>
-<tr>
-  <td><strong>Nombre</strong></td>
-  <td><strong>Sentido</strong></td>
-</tr>
 
-<tr>
-  <td>Ruta 1</td>
-  <td>Ruta 2</td>
-</tr>
+<div class="col s11 push-s1">
+    <div class="row">
+        <div class="col s3 push-s2">
+            <label for="tiposEstaciones">Estacion</label>
+            <span class="text-danger">*</span>
+            <select class="browser-default" dropdown="items">
+                <option value="0" disabled selected>Seleccione</option>
+                <option value="1" *ngFor="let estacion of estaciones">{{estacion}}</option>
+            </select>
+        </div>
+    </div>
+</div>
 
-<tr>
-  <td>no</td>
-  <td>su</td>
-</tr>
-</table>
+<div class="col s11 push-s1">
+    <div class="row">
+        <div class="col s3 push-s2">
+            <label for="tiposEstaciones">Nombre Ruta:</label>
+            <span class="text-danger">*</span>
+            <select class="browser-default" dropdown="items">
+                <option value="0" disabled selected>Seleccione</option>
+                <option value="1" *ngFor="let ruta of rutas">{{ruta}}</option>            
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="col s12 push-s10">
+    <a class="waves-effect #b71c1c red darken-4 btn">Generar</a>
+</div>
