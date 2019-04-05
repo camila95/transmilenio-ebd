@@ -32,7 +32,7 @@ import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archi
     InicioComponent,
     EncabezadoComponent,
     EstacionCrearComponent,
-    EstacionConsultarComponent
+    EstacionConsultarComponent,
     TroncalComponent,
     TroncalCrearComponent,
     TroncalConsultarComponent,
