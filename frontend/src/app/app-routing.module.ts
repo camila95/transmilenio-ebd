@@ -1,24 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EstacionComponent } from './components/estacion/estacion.component';
 import { InicioComponent } from './components/inicio/inicio.component';
-import { EstacionEditarComponent } from './components/estacion-editar/estacion-editar.component';
-import { EstacionEditarComponent } from './components/estacion-editar/estacion-editar.component';
-import { EstacionConsultarComponent } from './components/estacion-consultar/estacion-consultar.component';
-import { EstacionEliminarComponent } from './components/estacion-eliminar/estacion-eliminar.component';
+import { EstacionCrearComponent } from './components/estacion/estacion-crear/estacion-crear.component';
+import { EstacionConsultarComponent } from './components/estacion/estacion-consultar/estacion-consultar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
-  { path: 'estaciones/crear', component: EstacionComponent },
-  { path: 'estaciones/editar', component: EstacionEditarComponent },
-  { path: 'estaciones/consultar', component: EstacionConsultarComponent },
-  { path: 'estaciones/eliminar', component: EstacionEliminarComponent }
+  { path: 'estacion/administrar', component: EstacionCrearComponent },
+  { path: 'estacion/consultar', component: EstacionConsultarComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  providers: []
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
