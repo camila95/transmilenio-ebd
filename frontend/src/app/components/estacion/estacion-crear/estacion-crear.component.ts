@@ -7,12 +7,13 @@ import { TipoEstacionService } from 'src/app/services/tipoEstacion.service';
 import { TipoEstacion } from 'src/app/models/tipoEstacion';
 import { Troncal } from 'src/app/models/troncal';
 import { TroncalService } from 'src/app/services/troncal.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-estacion-crear',
-  templateUrl: './estacion-crear.component.html',
-  styleUrls: ['./estacion-crear.component.css'],
-  providers: [TipoEstacionService, EstacionService, TroncalService]
+    selector: 'app-estacion-crear',
+    templateUrl: './estacion-crear.component.html',
+    styleUrls: ['./estacion-crear.component.css'],
+    providers: [EstacionService, TipoEstacionService, TroncalService]
 })
 export class EstacionCrearComponent implements OnInit {
 
@@ -28,6 +29,7 @@ export class EstacionCrearComponent implements OnInit {
     listaTroncalSel: any[] = [];
 
     constructor(
+        private toastrService: ToastrService,
         private router: Router,
         private estacionService: EstacionService,
         private tipoEstacionService: TipoEstacionService,
@@ -82,7 +84,6 @@ export class EstacionCrearComponent implements OnInit {
             }
         );
     }
-  }
 
     private cargarListaTroncal(listaSelectItem: any[]) {
         listaSelectItem.push({ label: 'Seleccione', value: 0 });
@@ -96,18 +97,18 @@ export class EstacionCrearComponent implements OnInit {
             this.estacionService.createEstacion(this.estacionSelected).subscribe(
                 data => {
                     if (data.status === RESPONSE_OK) {
-                       // this.toastrService.success("Creación exitosa", "Éxito");
+                        // this.toastrService.success("Creación exitosa", "Éxito");
                         this.redireccionar();
                     } else {
-                       // this.toastrService.success(data.text, "Error");
+                        // this.toastrService.success(data.text, "Error");
                     }
                 },
                 error => {
-                   // this.toastrService.success(error.text, "Error");
+                    // this.toastrService.success(error.text, "Error");
                 }
             );
         } else {
-           // this.toastrService.warning("Camilitaaaaaaaaaaa", "Error");
+            // this.toastrService.warning("Camilitaaaaaaaaaaa", "Error");
         }
     }
 

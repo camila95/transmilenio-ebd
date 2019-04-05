@@ -14,7 +14,9 @@ import utils.DAOGenerico;
 import utils.HibernateUtil;
 import utils.JsonTransformer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 public class TroncalAPI {
@@ -22,12 +24,22 @@ public class TroncalAPI {
     public static void routes() {
 
         get("/", (req, res) -> {
-            Session se = HibernateUtil.getSessionFactory().openSession();
-            Query query = se.createQuery("from Troncal");
-            List<Troncal> tp = query.getResultList();
-            res.status(!tp.isEmpty() ? 200 : 400);
-            return new Gson().toJson(tp);
-        }, new JsonTransformer());
+            String response = "";
+            List<Map<String, Object>> aux = new ArrayList<>();
+            try {
+                Session se = HibernateUtil.getSessionFactory().openSession();
+                List<Troncal> troncal = (List<Troncal>) se.createQuery("from Troncal").list();
+                res.status(!troncal.isEmpty() ? 200 : 400);
+                se.close();
+                for (int i = 0; i < troncal.size(); i++) {
+                    aux.add(troncal.get(i).toMap());
+                }
+                response = new Gson().toJson(aux);
+            } catch (Exception e) {
+                res.status(404);
+            }
+            return response;
+        });
 
         get("/:id/", (req, res) -> {
             BigDecimal id = new BigDecimal(req.params(":id"));

@@ -1,8 +1,11 @@
 package modelos;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -68,11 +71,10 @@ public class TipoEstacion implements java.io.Serializable {
         this.estacions = estacions;
     }
 
-    public HashMap<String, Object> toMap() {
-        HashMap<String, Object> map = new HashMap<>();
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
         map.put("idTipoEsta", this.idTipoEsta);
         map.put("nombre", this.nombre);
-        map.put("estacions", this.estacions);
         return map;
     }
 

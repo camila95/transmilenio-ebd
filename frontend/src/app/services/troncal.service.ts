@@ -11,7 +11,7 @@ export class TroncalService {
 
     constructor(private http: HttpClient) { }
 
-    getAllTroncales() : Observable<any>{
-        return this.http.get<any>(URL_BASE_API_REST + 'troncales');
+    getAllTroncales() {
+        return this.http.get<any>(URL_BASE_API_REST + 'troncales/');
     }
 }

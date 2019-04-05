@@ -7,7 +7,6 @@ import { EstacionComponent } from './components/estacion/estacion.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { EncabezadoComponent } from './components/encabezado/encabezado.component';
-import { DropdownModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EstacionCrearComponent } from './components/estacion/estacion-crear/estacion-crear.component';
 import { EstacionConsultarComponent } from './components/estacion/estacion-consultar/estacion-consultar.component';
@@ -52,7 +51,6 @@ import { HttpModule } from '@angular/http';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    DropdownModule,
     BrowserAnimationsModule,
     MaterialModule,
     ToastrModule.forRoot({

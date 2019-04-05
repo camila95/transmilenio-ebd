@@ -12,8 +12,8 @@ export class ReporteService {
 
   constructor(private http: HttpClient) { }
 
-  getReporte(idEstacion: number, idRutaAlimen: number):Observable<any> {
-    return this.http.get<any>(URL_BASE_API_REST + 'estaciones/' + idEstacion +"/"+ idRutaAlimen);
+  getReporte(idEstacion: number, idRutaAlimen: number) {
+    return this.http.get<any>(URL_BASE_API_REST + 'estaciones/' + idEstacion + "/" + idRutaAlimen);
   }
 
 }

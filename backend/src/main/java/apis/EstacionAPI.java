@@ -12,7 +12,9 @@ import org.hibernate.Session;
 import utils.DAOGenerico;
 import utils.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 public class EstacionAPI {
@@ -20,11 +22,21 @@ public class EstacionAPI {
     public static void routes() {
 
         get("/", (req, res) -> {
-            Session se = HibernateUtil.getSessionFactory().openSession();
-            Query query = se.createQuery("from Estacion");
-            List<Estacion> tp = query.getResultList();
-            res.status(!tp.isEmpty() ? 200 : 400);
-            return new Gson().toJson(tp);
+            String response = "";
+            List<Map<String, Object>> aux = new ArrayList<>();
+            try {
+                Session se = HibernateUtil.getSessionFactory().openSession();
+                List<Estacion> estacion = (List<Estacion>) se.createQuery("from Estacion").list();
+                res.status(!estacion.isEmpty() ? 200 : 400);
+                se.close();
+                for (int i = 0; i < estacion.size(); i++) {
+                    aux.add(estacion.get(i).toMap());
+                }
+                response = new Gson().toJson(aux);
+            } catch (Exception e) {
+                res.status(404);
+            }
+            return response;
         });
 
         get("/:id/", (req, res) -> {

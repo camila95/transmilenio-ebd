@@ -1,8 +1,9 @@
-package modelos;
+package utils;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,13 +19,10 @@ import javax.persistence.Table;
 
 import com.github.javafaker.Faker;
 
-
 public class ConsultaDTO implements java.io.Serializable {
 
     private String nombre;
     private String codigo;
-    private String nombreRuta;
-    
 
     public ConsultaDTO() {
     }
@@ -45,19 +43,10 @@ public class ConsultaDTO implements java.io.Serializable {
         this.codigo = codigo;
     }
 
-    public String getNombreRuta() {
-        return this.nombreRuta;
-    }
-
-    public void setNombreRuta(String nombreRuta) {
-        this.nombreRuta = nombreRuta;
-    }
-
-    public HashMap<String, Object> toMap() {
-        HashMap<String, Object> map = new HashMap<>();
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
         map.put("nombre", this.nombre);
         map.put("codigo", this.codigo);
-        map.put("nombreRuta", this.nombreRuta);
         return map;
     }
 
