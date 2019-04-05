@@ -5,21 +5,21 @@
   <li><a [routerLink]="['/estacion/consultar']"><i class="tiny material-icons left">edit</i>Consultar</a></li>
 </ul>
 <ul id="troncales" class="dropdown-content">
-  <li><a href="#!"> <i class="tiny material-icons left">add_circle_outline</i>Crear</a></li>
+  <li><a [routerLink]="'/troncal/crear'"> <i class="tiny material-icons left">add_circle_outline</i>Crear</a></li>
   <li class="divider"></li>
-  <li><a href="#!"><i class="tiny material-icons left">edit</i>Consultar</a></li>
+  <li><a [routerLink]="'/troncal/consultar'"><i class="tiny material-icons left">edit</i>Consultar</a></li>
 </ul>
 <ul id="rutas" class="dropdown-content">
-  <li><a href="#!"> <i class="tiny material-icons left">add_circle_outline</i>Crear</a></li>
+  <li><a [routerLink]="'/ruta/crear'"> <i class="tiny material-icons left">add_circle_outline</i>Crear</a></li>
   <li class="divider"></li>
-  <li><a href="#!"><i class="tiny material-icons left">edit</i>Consultar</a></li>
+  <li><a [routerLink]="'/ruta/consultar'"><i class="tiny material-icons left">edit</i>Consultar</a></li>
 </ul>
 <ul id="datosMasivos" class="dropdown-content">
-  <li><a href="#!"> <i class="tiny material-icons left">note_add</i>Cargar Archivo</a></li>
+  <li><a [routerLink]="'/archivo/cargararchivo'"> <i class="tiny material-icons left">note_add</i>Cargar Archivo</a></li>
   <li class="divider"></li>
-  <li><a href="#!"><i class="tiny material-icons left">view_module</i>Generar Datos</a></li>
+  <li><a [routerLink]="'/archivo/generardatos'"><i class="tiny material-icons left">view_module</i>Generar Datos</a></li>
   <li class="divider"></li>
-  <li><a href="#!"><i class="tiny material-icons left">web</i>Servicio Web</a></li>
+  <li><a [routerLink]="'/archivo/servicioweb'"><i class="tiny material-icons left">web</i>Servicio Web</a></li>
 </ul>
 
 <nav>
@@ -45,7 +45,7 @@
           Rutas
           <i class="material-icons right">arrow_drop_down</i></a>
       </li>
-      <li><a refe="/hero"><i class="tiny material-icons left">event_note</i>Reportes</a></li>
+      <li><a [routerLink]="'/reportes'"><i class="tiny material-icons left">event_note</i>Reportes</a></li>
 
       <li><a class="dropdown-trigger" href="#!" data-target="datosMasivos">
           <i class="tiny material-icons left">dashboard</i>

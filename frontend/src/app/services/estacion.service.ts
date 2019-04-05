@@ -1,62 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions, Headers, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs';
 import { Estacion } from '../models/estacion';
-import { TOKEN, APLICACION_ID, USER_ID, URL_BASE_API_REST } from '../utils/constantes';
+import { URL_BASE_API_REST } from '../utils/constantes';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EstacionService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
 
-  public getEstacionByTipoEstacion(idTipoEstacion: number): Observable<Response> {
-    const headers = new Headers({
-      'Content-Type': 'application/json; charset=UTF-8',
-      'access_token': sessionStorage.getItem(TOKEN),
-      'client_id': sessionStorage.getItem(APLICACION_ID),
-      'user_id': sessionStorage.getItem(USER_ID)
-    });
-    const options = new RequestOptions({ headers: headers });
-    return this.http.get(URL_BASE_API_REST + 'estaciones/' + idTipoEstacion, options);
+  getEstacionByTipoEstacion(idTipoEstacion: number):Observable<any> {
+    return this.http.get<any>(URL_BASE_API_REST + 'estaciones/' + idTipoEstacion);
   }
 
 
-  public createEstacion(estacion: Estacion): Observable<Response> {
-    const headers = new Headers({
-      'Content-Type': 'application/json; charset=UTF-8',
-      'access_token': sessionStorage.getItem(TOKEN),
-      'client_id': sessionStorage.getItem(APLICACION_ID),
-      'user_id': sessionStorage.getItem(USER_ID)
-    });
-    const options = new RequestOptions({ headers: headers });
-    return this.http.post(URL_BASE_API_REST + 'estaciones/', estacion, options);
+  createEstacion(estacion: Estacion):Observable<any> {
+    return this.http.post<any>(URL_BASE_API_REST + 'estaciones/', estacion);
   }
 
 
-  public updateEstacion(estacion: Estacion): Observable<Response> {
-    const headers = new Headers({
-      'Content-Type': 'application/json; charset=UTF-8',
-      'access_token': sessionStorage.getItem(TOKEN),
-      'client_id': sessionStorage.getItem(APLICACION_ID),
-      'user_id': sessionStorage.getItem(USER_ID)
-    });
-    const options = new RequestOptions({ headers: headers });
-    return this.http.put(URL_BASE_API_REST + 'estaciones/', estacion, options);
+  updateEstacion(estacion: Estacion):Observable<any> {
+    return this.http.put<any>(URL_BASE_API_REST + 'estaciones/', estacion);
   }
 
 
-  public deleteEstacion(estacion: Estacion): Observable<Response> {
-    const headers = new Headers({
-      'Content-Type': 'application/json; charset=UTF-8',
-      'access_token': sessionStorage.getItem(TOKEN),
-      'client_id': sessionStorage.getItem(APLICACION_ID),
-      'user_id': sessionStorage.getItem(USER_ID)
-    });
-    const options = new RequestOptions({ headers: headers });
-    return this.http.delete(URL_BASE_API_REST + 'estaciones/' + estacion, options);
+  deleteEstacion(estacion: Estacion): Observable<any> {
+    return this.http.delete<any>(URL_BASE_API_REST + 'estaciones/' + estacion);
   }
-
 }
