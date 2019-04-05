@@ -13,6 +13,16 @@ import { EstacionConsultarComponent } from './components/estacion/estacion-consu
 import { MaterialModule } from 'src/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { TroncalComponent } from './components/troncal/troncal.component';
+import { TroncalCrearComponent } from './components/troncal/troncal-crear/troncal-crear.component';
+import { TroncalConsultarComponent } from './components/troncal/troncal-consultar/troncal-consultar.component';
+import { RutaComponent } from './components/ruta/ruta.component';
+import { RutaCrearComponent } from './components/ruta/ruta-crear/ruta-crear.component';
+import { RutaConsultarComponent } from './components/ruta/ruta-consultar/ruta-consultar.component';
+import { GenerarDatosComponent } from './components/cargar-archivo/generar-datos/generar-datos.component';
+import { ServicioWebComponent } from './components/cargar-archivo/servicio-web/servicio-web.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archivo.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +32,17 @@ import { ToastrModule } from 'ngx-toastr';
     InicioComponent,
     EncabezadoComponent,
     EstacionCrearComponent,
-    EstacionConsultarComponent
+    EstacionConsultarComponent,
+    TroncalComponent,
+    TroncalCrearComponent,
+    TroncalConsultarComponent,
+    RutaComponent,
+    RutaCrearComponent,
+    RutaConsultarComponent,
+    GenerarDatosComponent,
+    ServicioWebComponent,
+    ReportesComponent,
+    CargarArchivoComponent
 
   ],
   imports: [
