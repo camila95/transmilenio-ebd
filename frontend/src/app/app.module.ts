@@ -23,6 +23,7 @@ import { GenerarDatosComponent } from './components/cargar-archivo/generar-datos
 import { ServicioWebComponent } from './components/cargar-archivo/servicio-web/servicio-web.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archivo.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archi
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    HttpModule,
     BrowserAnimationsModule,
     MaterialModule,
     ToastrModule.forRoot({
