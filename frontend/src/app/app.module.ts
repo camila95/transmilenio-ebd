@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EstacionCrearComponent } from './components/estacion/estacion-crear/estacion-crear.component';
 import { EstacionConsultarComponent } from './components/estacion/estacion-consultar/estacion-consultar.component';
 import { MaterialModule } from 'src/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MaterialModule } from 'src/material.module';
     FormsModule,
     DropdownModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

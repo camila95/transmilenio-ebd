@@ -12,7 +12,8 @@ import { TroncalService } from 'src/app/services/troncal.service';
 @Component({
   selector: 'app-estacion-crear',
   templateUrl: './estacion-crear.component.html',
-  styleUrls: ['./estacion-crear.component.css']
+  styleUrls: ['./estacion-crear.component.css'],
+  providers: [TipoEstacionService, EstacionService, TroncalService]
 })
 export class EstacionCrearComponent implements OnInit {
 
@@ -136,5 +137,4 @@ export class EstacionCrearComponent implements OnInit {
   private redireccionar() {
     this.router.navigate(['/']);
   }
-
 }
