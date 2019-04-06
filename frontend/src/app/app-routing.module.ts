@@ -13,7 +13,7 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archivo.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+  //{ path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
   { path: 'estacion/administrar', component: EstacionCrearComponent },
   { path: 'estacion/consultar', component: EstacionConsultarComponent },

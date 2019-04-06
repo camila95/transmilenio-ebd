@@ -30,8 +30,16 @@ public class ReporteAPI {
             BigDecimal idEstacion = new BigDecimal(req.params(":idEstacion"));
             BigDecimal idRutaAlimen = new BigDecimal(req.params(":idRutaAlimen"));
             Session se = HibernateUtil.getSessionFactory().openSession();
-            Query query = se.createQuery("select e.nombre, r.codigo, r.nombre from Estacion as e "
-                    + " join e.rutaAlimens as r join r.parRutAlims as pra");
+            Query query = se.createQuery("select e.nombre, r.codigo, r.nombre, p.nombre, h.rango, h.horaComienzo, h.horaFin  "
+                    + " from Estacion as e "
+                    + " join e.rutaAlimens as r join r.parRutAlims as pra  "
+                    + " join pra.paradero as p "
+                    + " join p.paraHoras ad ph"
+                    + " join ph.horario as h "
+                    + " where e.idEstacion =: idEstacion "
+                    + " and r.idRutaAlimen =: idRuta");
+                query.setParameter("idEstacion", idEstacion);
+                query.setParameter("idRuta", idRutaAlimen);
             List<ConsultaDTO> lista = (List<ConsultaDTO>) query.list();
             return lista;
         }, new JsonTransformer());

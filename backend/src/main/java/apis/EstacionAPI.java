@@ -51,6 +51,29 @@ public class EstacionAPI {
             }
             return response;
         });
+
+        get("/idTipoEstacion/:id", (req, res) -> {
+            BigDecimal id = new BigDecimal(req.params(":id"));
+            String response = "";
+            List<Map<String, Object>> aux = new ArrayList<>();
+            Map<String, List<Map<String, Object>>> result = new HashMap<>();
+            try {
+                Session se = HibernateUtil.getSessionFactory().openSession();
+                Query q = se.createQuery("select e from Estacion e where e.tipoEstacion.idTipoEsta =: idTipoEsta ");
+                List<Estacion> tp = (List<Estacion>)  q.setParameter("idTipoEsta", id).list();
+                res.status(!tp.isEmpty() ? 200 : 400);
+                se.close();
+                for (int i = 0; i < tp.size(); i++) {
+                    aux.add(tp.get(i).toMap());
+                }
+                result.put("listasEstaciones", aux);
+                response = new Gson().toJson(result);
+            } catch (Exception e) {
+                res.status(404);
+            }
+            return response;
+        });
+
         post("/", (req, res) -> {
             Estacion estacion = new Gson().fromJson(req.body(), Estacion.class);
             DAOGenerico<Estacion> dao = new DAOGenerico<Estacion>(Estacion.class);

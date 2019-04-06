@@ -29,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
 
 
 @NgModule({
@@ -68,7 +69,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatSelectModule 
+    MatTableModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule 
   ],
   providers: [],
   bootstrap: [AppComponent],

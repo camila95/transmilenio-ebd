@@ -1,12 +1,30 @@
 plugins {
     id 'java'
     id 'application'
+    id 'war'
+    id 'eclipse'
     //id 'com.github.johnrengelman.shadow' version '1.2.2'
 }
 
 sourceCompatibility = 1.8
 
-mainClassName = 'HelloSpark'
+targetCompatibility = 1.8
+
+mainClassName = 'TestAPI'
+
+
+version = '1.0'
+
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+        	'Implementation-Version': version,
+        	'Main-Class': 'TestAPI'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
 
 repositories {
     mavenCentral()
@@ -27,8 +45,7 @@ dependencies {
     compile group: 'javax.inject', name: 'javax.inject', version: '1'
     compile group: 'javax.ejb', name: 'javax.ejb-api', version: '3.2.2'
     compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.5.0'
-    
-    
+
     implementation 'com.github.javafaker:javafaker:0.17.2'    
 
 }
