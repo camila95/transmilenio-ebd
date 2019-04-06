@@ -30,6 +30,7 @@ public class TipoEstacionAPI {
         get("/", (req, res) -> {
             String response = "";
             List<Map<String, Object>> aux = new ArrayList<>();
+            Map<String, List<Map<String, Object>>> result = new HashMap<>();
             try {
                 Session se = HibernateUtil.getSessionFactory().openSession();
                 List<TipoEstacion> tp = (List<TipoEstacion>) se.createQuery("from TipoEstacion").list();
@@ -38,7 +39,8 @@ public class TipoEstacionAPI {
                 for (int i = 0; i < tp.size(); i++) {
                     aux.add(tp.get(i).toMap());
                 }
-                response = new Gson().toJson(aux);
+                result.put("listasTroncales", aux);
+                response = new Gson().toJson(result);
             } catch (Exception e) {
                 res.status(404);
             }

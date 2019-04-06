@@ -20,11 +20,12 @@ import com.google.gson.Gson;
 public class TestAPI {
 
     public static <TipoEstacion> void main(String[] args) {
-
         /*
-         * after((req, res) -> { res.type("application/json"); }); path("/api/", () -> {
-         * OperadorAPI.routes(); GeneracionMasivaAPI.routes(); });
+         * after((req, res) -> { res.type("application/json"); });
+         * 
+         * path("/api/", () -> { OperadorAPI.routes(); GeneracionMasivaAPI.routes(); });
          */
+
         Session se = HibernateUtil.getSessionFactory().openSession();
         se.close();
 

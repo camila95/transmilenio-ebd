@@ -10,8 +10,8 @@ export class Estacion {
     public latitud: string;
     public longitud: string;
     public orden: number;
-    public estaFinal: boolean;
-    public estaIncial: boolean;
+    public estaFinal: number;
+    public estaIncial: number;
     public troncal: Troncal;
     public tipoEstacion: TipoEstacion;
 

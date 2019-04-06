@@ -26,6 +26,7 @@ public class TroncalAPI {
         get("/", (req, res) -> {
             String response = "";
             List<Map<String, Object>> aux = new ArrayList<>();
+            Map<String, List<Map<String, Object>>> result = new HashMap<>();
             try {
                 Session se = HibernateUtil.getSessionFactory().openSession();
                 List<Troncal> troncal = (List<Troncal>) se.createQuery("from Troncal").list();
@@ -34,7 +35,8 @@ public class TroncalAPI {
                 for (int i = 0; i < troncal.size(); i++) {
                     aux.add(troncal.get(i).toMap());
                 }
-                response = new Gson().toJson(aux);
+                result.put("listasEstaciones", aux);
+                response = new Gson().toJson(result);
             } catch (Exception e) {
                 res.status(404);
             }
