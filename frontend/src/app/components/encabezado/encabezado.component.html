@@ -1,7 +1,8 @@
 <ul id="estaciones" class="dropdown-content">
-  <li><a [routerLink]="'/estacion/crear'"><i class="tiny material-icons left">add_circle_outline</i>Crear</a></li>
+  <li><a [routerLink]="['/estacion/administrar']"><i class="tiny material-icons left">add_circle_outline</i>Crear</a>
+  </li>
   <li class="divider"></li>
-  <li><a [routerLink]="'/estacion/consultar'"><i class="tiny material-icons left">edit</i>Consultar</a></li>
+  <li><a [routerLink]="['/estacion/consultar']"><i class="tiny material-icons left">edit</i>Consultar</a></li>
 </ul>
 <ul id="troncales" class="dropdown-content">
   <li><a [routerLink]="'/troncal/crear'"> <i class="tiny material-icons left">add_circle_outline</i>Crear</a></li>
@@ -10,9 +11,11 @@
 </ul>
 
 <ul id="datosMasivos" class="dropdown-content">
-  <li><a [routerLink]="'/archivo/cargararchivo'"> <i class="tiny material-icons left">note_add</i>Cargar Archivo</a></li>
+  <li><a [routerLink]="'/archivo/cargararchivo'"> <i class="tiny material-icons left">note_add</i>Cargar Archivo</a>
+  </li>
   <li class="divider"></li>
-  <li><a [routerLink]="'/archivo/generardatos'"><i class="tiny material-icons left">view_module</i>Generar Datos</a></li>
+  <li><a [routerLink]="'/archivo/generardatos'"><i class="tiny material-icons left">view_module</i>Generar Datos</a>
+  </li>
   <li class="divider"></li>
   <li><a [routerLink]="'/archivo/servicioweb'"><i class="tiny material-icons left">web</i>Servicio Web</a></li>
 </ul>

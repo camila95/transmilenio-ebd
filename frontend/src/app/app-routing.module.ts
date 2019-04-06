@@ -13,7 +13,7 @@ import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archi
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
-  { path: 'estacion/crear', component: EstacionCrearComponent },
+  { path: 'estacion/administrar', component: EstacionCrearComponent },
   { path: 'estacion/consultar', component: EstacionConsultarComponent },
   { path: 'troncal/crear', component: TroncalCrearComponent },
   { path: 'troncal/consultar', component: TroncalConsultarComponent },
