@@ -3,34 +3,33 @@
 
 <legend id="leyenda">Reportes</legend>
 <p>
-  Rerportes del sistema transmilenio- lista de rutas
+  Rerportes del sistema transmileni
 </p>
 
 
-<div class="col s11 push-s1">
-    <div class="row">
-        <div class="col s3 push-s2">
-            <label for="tiposEstaciones">Estacion</label>
-            <span class="text-danger">*</span>
-            <select class="browser-default" dropdown="items">
-                <option value="0" disabled selected>Seleccione</option>
-                <option value="1" *ngFor="let estacion of estaciones">{{estacion}}</option>
-            </select>
-        </div>
-    </div>
+
+<div class="col s3">
+    <label for="troncal">Estación:</label>
+    <span class="text-danger">*</span>
+    <mat-form-field>
+        <mat-select>
+            <mat-option *ngFor="let estacion of estaciones">
+                {{estacion}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 </div>
 
-<div class="col s11 push-s1">
-    <div class="row">
-        <div class="col s3 push-s2">
-            <label for="tiposEstaciones">Nombre Ruta:</label>
-            <span class="text-danger">*</span>
-            <select class="browser-default" dropdown="items">
-                <option value="0" disabled selected>Seleccione</option>
-                <option value="1" *ngFor="let ruta of rutas">{{ruta}}</option>            
-            </select>
-        </div>
-    </div>
+<div class="col s3">
+    <label for="troncal">nombre Ruta:</label>
+    <span class="text-danger">*</span>
+    <mat-form-field>
+        <mat-select>
+            <mat-option *ngFor="let ruta of rutas">
+                {{ruta}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 </div>
 
 <div class="col s12 push-s10">

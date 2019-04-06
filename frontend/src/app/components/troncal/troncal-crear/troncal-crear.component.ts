@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./troncal-crear.component.css']
 })
 export class TroncalCrearComponent implements OnInit {
-
+operadores = ['operador1', 'operador2','operador3'];
   constructor() { }
 
   ngOnInit() {

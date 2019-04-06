@@ -3,16 +3,20 @@
 
 <div class="col s11 push-s1">
     <div class="row">
+      
+
         <div class="col s3">
-            <label for="tabla">Seleccione la tabla:</label>
+            <label for="troncal">Seleccione la tabla:</label>
             <span class="text-danger">*</span>
-            <select class="browser-default" dropdown="items">
-                <option value="0" disabled selected>Seleccione</option>
-                <option value="1">tabla 1</option>
-                <option value="2">tabla 2</option>
-                <option value="3">tabla 3</option>
-            </select>
+            <mat-form-field>
+                <mat-select>
+                    <mat-option *ngFor="let tabla of tablas">
+                        {{tabla}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
+
         <div class="col s3">
             <div class="row">
                 <label for="reporte">numero de registros:*</label>

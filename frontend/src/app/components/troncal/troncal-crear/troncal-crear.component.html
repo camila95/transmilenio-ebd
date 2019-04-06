@@ -36,17 +36,18 @@
 
 
 
-    <div class="row">
-        <div class="col s3 push-s2">
-            <label for="tiposEstaciones">Operador acargo:</label>
-            <span class="text-danger">*</span>
-            <select class="browser-default" dropdown="items">
-                <option value="0" disabled selected>Seleccione</option>
-                <option value="1">Operador 1</option>
-                <option value="2">Operador 2</option>
-                <option value="3">Operador 3</option>
-            </select>
-        </div>
+
+
+    <div class="col s3 push-s2">
+        <label for="troncal">Operador a cargo:</label>
+        <span class="text-danger">*</span>
+        <mat-form-field>
+            <mat-select>
+                <mat-option *ngFor="let operador of operadores">
+                    {{operador}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
 </div>
 
