@@ -9,9 +9,11 @@ import { RESPONSE_OK } from 'src/app/utils/constantes';
   providers: [ReporteService]
 })
 export class ReportesComponent implements OnInit {
-
   estaciones=['estacion1','estacion2','estacion3','estacion4'];
   rutas=['ruta1','ruta2','ruta3','ruta4'];
+  constructor(private  reporteService: ReporteService) {
+   }
+
   constructor(private reporteService: ReporteService) { }
 
   ngOnInit() {
