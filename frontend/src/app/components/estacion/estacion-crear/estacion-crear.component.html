@@ -51,7 +51,7 @@
             <label for="tiposEstaciones"> Tipo de Estación </label>
             <span class="text-danger">*</span>
             <mat-form-field>
-                <mat-select [(ngModel)]="tipoEstacionSel"> 
+                <mat-select [(ngModel)]="tipoEstacionSel">
                     <mat-option *ngFor="let food of listaTipoEstacionSelectItem" [value]="food.value"
                          [disabled]="isCrear">
                         {{food.label}}
@@ -68,8 +68,8 @@
         <label for="troncal">Troncal al que pertenece</label>
         <span class="text-danger">*</span>
         <mat-form-field>
-            <mat-select [(ngModel)]="troncalSel"> 
-                <mat-option *ngFor="let food of listaTroncalSelectItem" [value]="food.value"  
+            <mat-select [(ngModel)]="troncalSel">
+                <mat-option *ngFor="let food of listaTroncalSelectItem" [value]="food.value"
                 [disabled]="isCrear">
                     {{food.label}}
                 </mat-option>
