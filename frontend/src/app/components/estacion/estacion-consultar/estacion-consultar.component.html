@@ -1,0 +1,45 @@
+<legend id="leyenda">Consultar Estaciones</legend>
+
+<div class="col s11 push-s1">
+<div class="row">
+    <div class="col s3 push-s2">
+        <label for="tiposEstaciones"> Tipo de Estación </label>
+        <span class="text-danger">*</span>
+        <mat-form-field>
+            <mat-select [(ngModel)]="tipoEstacionSel" (selectionChange)="obtenerEstacionByTipoEstacion($event)"> 
+                <mat-option *ngFor="let food of listaTipoEstacionSelectItem" [value]="food.value">
+                    {{food.label}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>
+
+<table mdbTable>
+        <thead>
+          <tr>
+            <th *ngFor="let head of displayedColumns" scope="col">{{head}} </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr mdbTableCol *ngFor="let el of listaEstaciones">
+            <th style="text-align: center !important;">{{el.idEstacion}}</th>    
+            <td>{{el.nombre}}</td>
+            <td>{{el.direccion}}</td>
+            <td>{{el.localidad}}</td>
+            <td>
+                <button type="button" class="btn" style="background-color: orange; margin-right: 10px !important;">
+                    <i class="material-icons">edit</i>
+                </button>
+        
+                <a class="waves-effect waves-light btn modal-trigger" (click)="eliminar(el)">
+                    <i class="material-icons">delete</i>  
+                </a>
+ 
+            </td>
+          </tr>
+        </tbody>
+      </table>

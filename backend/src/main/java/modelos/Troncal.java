@@ -3,6 +3,7 @@ package modelos;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -119,15 +120,13 @@ public class Troncal implements java.io.Serializable {
         this.estacions = estacions;
     }
 
-    public HashMap<String, Object> toMap() {
-        HashMap<String, Object> map = new HashMap<>();
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
         map.put("idTroncal", this.idTroncal);
-        map.put("operador", this.operador);
         map.put("nombreVia", this.nombreVia);
         map.put("zona", this.zona);
         map.put("colorZona", this.colorZona);
         map.put("nombreZona", this.nombreZona);
-        map.put("estacions", this.estacions);
         return map;
     }
 

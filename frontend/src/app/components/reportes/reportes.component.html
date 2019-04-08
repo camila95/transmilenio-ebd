@@ -1,0 +1,34 @@
+<legend id="leyenda">Reportes</legend>
+<p>
+  Rerportes del sistema transmileni
+</p>
+
+
+
+<div class="col s3">
+    <label for="troncal">Estación:</label>
+    <span class="text-danger">*</span>
+    <mat-form-field>
+        <mat-select>
+            <mat-option *ngFor="let estacion of estaciones">
+                {{estacion}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="col s3">
+    <label for="troncal">nombre Ruta:</label>
+    <span class="text-danger">*</span>
+    <mat-form-field>
+        <mat-select>
+            <mat-option *ngFor="let ruta of rutas">
+                {{ruta}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="col s12 push-s10">
+    <a class="waves-effect #b71c1c red darken-4 btn">Generar</a>
+</div>

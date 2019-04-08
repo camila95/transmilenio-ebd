@@ -20,13 +20,19 @@ import com.google.gson.Gson;
 public class TestAPI {
 
     public static <TipoEstacion> void main(String[] args) {
-
         /*
-         * after((req, res) -> { res.type("application/json"); }); path("/api/", () -> {
-         * OperadorAPI.routes(); GeneracionMasivaAPI.routes(); });
+         * after((req, res) -> { res.type("application/json"); });
+         * 
+         * path("/api/", () -> { OperadorAPI.routes(); GeneracionMasivaAPI.routes(); });
          */
 
-        port(8444);
+        Session se = HibernateUtil.getSessionFactory().openSession();
+        se.close();
+
+        port(8081);
+        TestAPI testAPI = new TestAPI();
+        testAPI.corsFilter();
+
         path("/estaciones", () -> {
             EstacionAPI.routes();
         });
@@ -37,7 +43,10 @@ public class TestAPI {
             TroncalAPI.routes();
         });
 
-        
+        path("/reporte", () -> {
+            ReporteAPI.routes();
+        });
+
         /*
          * get("/test", (req, res) -> { res.type("application/json"); return new
          * Gson().toJson( new StandardResponse(StatusResponse.SUCCESS, new
@@ -59,5 +68,24 @@ public class TestAPI {
          * return "Error: " + e.getMessage(); } finally { if (session.isOpen()) {
          * session.close(); } } });
          */
+    }
+
+    public static void corsFilter() {
+        // Filtro para convertir la salida a formato JSON
+        options("/*", (request, response) -> {
+            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+            }
+            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+            }
+            String mensajeOk = "{'id':10,'cantidad':0}";
+            return new Gson().toJson(mensajeOk).toString();
+
+        });
+        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+        after((request, response) -> response.type("application/json"));
     }
 }

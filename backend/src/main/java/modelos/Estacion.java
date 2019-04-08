@@ -3,6 +3,7 @@ package modelos;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -192,10 +193,9 @@ public class Estacion implements java.io.Serializable {
         this.rutaAlimens = rutaAlimens;
     }
 
-    public HashMap<String, Object> toMap() {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("tipoEstacion", this.tipoEstacion);
-        map.put("troncal", this.troncal);
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("idEstacion", this.idEstacion);
         map.put("nombre", this.nombre);
         map.put("direccion", this.direccion);
         map.put("localidad", this.localidad);
@@ -204,8 +204,6 @@ public class Estacion implements java.io.Serializable {
         map.put("estaIncial", this.estaIncial);
         map.put("estaFinal", this.estaFinal);
         map.put("orden", this.orden);
-        map.put("vagons", this.vagons);
-        map.put("rutaAlimens", this.rutaAlimens);
         return map;
     }
 
