@@ -12,7 +12,9 @@ import org.hibernate.Session;
 import utils.DAOGenerico;
 import utils.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 public class EstacionAPI {
@@ -20,11 +22,21 @@ public class EstacionAPI {
     public static void routes() {
 
         get("/", (req, res) -> {
-            Session se = HibernateUtil.getSessionFactory().openSession();
-            Query query = se.createQuery("from Estacion");
-            List<Estacion> tp = query.getResultList();
-            res.status(!tp.isEmpty() ? 200 : 400);
-            return new Gson().toJson(tp);
+            String response = "";
+            List<Map<String, Object>> aux = new ArrayList<>();
+            try {
+                Session se = HibernateUtil.getSessionFactory().openSession();
+                List<Estacion> estacion = (List<Estacion>) se.createQuery("from Estacion").list();
+                res.status(!estacion.isEmpty() ? 200 : 400);
+                se.close();
+                for (int i = 0; i < estacion.size(); i++) {
+                    aux.add(estacion.get(i).toMap());
+                }
+                response = new Gson().toJson(aux);
+            } catch (Exception e) {
+                res.status(404);
+            }
+            return response;
         });
 
         get("/:id/", (req, res) -> {
@@ -39,6 +51,29 @@ public class EstacionAPI {
             }
             return response;
         });
+
+        get("/idTipoEstacion/:id", (req, res) -> {
+            BigDecimal id = new BigDecimal(req.params(":id"));
+            String response = "";
+            List<Map<String, Object>> aux = new ArrayList<>();
+            Map<String, List<Map<String, Object>>> result = new HashMap<>();
+            try {
+                Session se = HibernateUtil.getSessionFactory().openSession();
+                Query q = se.createQuery("select e from Estacion e where e.tipoEstacion.idTipoEsta =: idTipoEsta ");
+                List<Estacion> tp = (List<Estacion>)  q.setParameter("idTipoEsta", id).list();
+                res.status(!tp.isEmpty() ? 200 : 400);
+                se.close();
+                for (int i = 0; i < tp.size(); i++) {
+                    aux.add(tp.get(i).toMap());
+                }
+                result.put("listasEstaciones", aux);
+                response = new Gson().toJson(result);
+            } catch (Exception e) {
+                res.status(404);
+            }
+            return response;
+        });
+
         post("/", (req, res) -> {
             Estacion estacion = new Gson().fromJson(req.body(), Estacion.class);
             DAOGenerico<Estacion> dao = new DAOGenerico<Estacion>(Estacion.class);

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./generar-datos.component.css']
 })
 export class GenerarDatosComponent implements OnInit {
-
+  tablas = ['tabla1', 'tabla2','tabla3'];
   constructor() { }
 
   ngOnInit() {
