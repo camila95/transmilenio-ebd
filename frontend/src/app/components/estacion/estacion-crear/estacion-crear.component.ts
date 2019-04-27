@@ -21,7 +21,7 @@ export class EstacionCrearComponent implements OnInit {
     labelPosition = 'NO';
     nombreTitulo = "";
     isCrear: boolean = false;
-    loading: boolean = false;
+    public loading = false;
     listaTipoEstacionSelectItem: any[] = [];
     listaTipoEstaciones: Array<TipoEstacion> = [];
     estacionSelected: Estacion;
@@ -44,13 +44,13 @@ export class EstacionCrearComponent implements OnInit {
 
     ngOnInit() {
         this.estacionSelected = new Estacion();
+        this.loading = true;
         this.obtenerListasTipoEstaciones();
         this.obtenerListaTroncal();
         this.isCrear = false;
         this.nombreTitulo = "Crear Estación";
         //this.nombreTitulo = "Editar Estación";
         this.isCrear = false;
-        this.loading = false;
         this.tipoEstacionSel = null;
     }
 
@@ -58,7 +58,7 @@ export class EstacionCrearComponent implements OnInit {
     private obtenerListasTipoEstaciones() {
         this.tipoEstacionService.getAllTipoEstacion().subscribe(
             data => {
-                this.loading = false;
+                this.loading = true;
                 var getKeysArray = Object.keys(data);
                 var getValueArrayTipoEsta = Object.values(data)[0];
                 
@@ -68,6 +68,7 @@ export class EstacionCrearComponent implements OnInit {
                     }
                     this.cargarListaTipoEsta(this.listaTipoEstacionSelectItem);
                     this.tipoEstacionSel = this.listaTipoEstacionSelectItem[0].value;
+                    this.estacionSelected.idTipoEstacion = this.listaTipoEstacionSelectItem[0].value;
                     this.loading = false;
                 } else {
                     this.loading = false;
@@ -101,6 +102,7 @@ export class EstacionCrearComponent implements OnInit {
                     }
                     this.cargarListaTroncal(this.listaTroncalSelectItem);
                     this.troncalSel = this.listaTroncalSelectItem[0].value;
+                    this.estacionSelected.idTroncal = this.listaTroncalSelectItem[0].value;
                     this.loading = false;
                 } else {
                     this.loading = false;           
@@ -121,12 +123,6 @@ export class EstacionCrearComponent implements OnInit {
     }
 
     private adicionarVariables(){
-        let tipoEstacion = new TipoEstacion();
-        tipoEstacion.idTipoEsta = parseInt(this.tipoEstacionSel+"");
-        this.estacionSelected.tipoEstacion = tipoEstacion;
-        let troncal = new Troncal();
-        troncal.idTroncal = parseInt(this.troncalSel+"");
-        this.estacionSelected.troncal = troncal;
         if(this.estacionInicial == "SI"){
             this.estacionSelected.estaIncial = 1;
         }else{
@@ -150,7 +146,7 @@ export class EstacionCrearComponent implements OnInit {
                     if(data != null){
                         this.toastrService.success("Creación exitosa", "Éxito");
                         this.loading = false;
-                        this.redireccionar();
+                       // this.redireccionar();
                     } else {
                         this.loading = false;
                         this.toastrService.error("Error en la respuesta del servicio", "Error");
@@ -187,10 +183,10 @@ export class EstacionCrearComponent implements OnInit {
         if (!this.estacionSelected.latitud) {
             resultado = false;
         }
-        if(this.tipoEstacionSel == "0"){
+        if(!this.estacionSelected.idTipoEstacion){
             resultado = false;
         }
-        if(this.troncalSel == "0"){
+        if(!this.estacionSelected.idTroncal){
             resultado = false;
         }
         if (!this.estacionInicial) {

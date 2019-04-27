@@ -14,8 +14,6 @@ export class ReportesComponent implements OnInit {
   constructor(private  reporteService: ReporteService) {
    }
 
-  constructor(private reporteService: ReporteService) { }
-
   ngOnInit() {
     
   }

@@ -1,5 +1,5 @@
 <legend id="leyenda">{{nombreTitulo}}</legend>
-
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 <div class="col s11 push-s1">
     <div class="col s3">
         <div class="row">
@@ -51,7 +51,7 @@
             <label for="tiposEstaciones"> Tipo de Estación </label>
             <span class="text-danger">*</span>
             <mat-form-field>
-                <mat-select [(ngModel)]="tipoEstacionSel">
+                <mat-select [(ngModel)]="estacionSelected.idTipoEstacion">
                     <mat-option *ngFor="let food of listaTipoEstacionSelectItem" [value]="food.value"
                          [disabled]="isCrear">
                         {{food.label}}
@@ -68,7 +68,7 @@
         <label for="troncal">Troncal al que pertenece</label>
         <span class="text-danger">*</span>
         <mat-form-field>
-            <mat-select [(ngModel)]="troncalSel">
+            <mat-select [(ngModel)]="estacionSelected.idTroncal">
                 <mat-option *ngFor="let food of listaTroncalSelectItem" [value]="food.value"
                 [disabled]="isCrear">
                     {{food.label}}
@@ -119,4 +119,3 @@
 <div *ngIf="!isCrear" class="col s12 push-s10">
     <a class="waves-effect #b71c1c red darken-4 btn" (click)="guardarEstacion()">Guardar</a>
 </div>
-<ngx-loading [show]="loading"></ngx-loading>

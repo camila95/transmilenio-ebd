@@ -12,8 +12,8 @@ export class Estacion {
     public orden: number;
     public estaFinal: number;
     public estaIncial: number;
-    public troncal: Troncal;
-    public tipoEstacion: TipoEstacion;
+    public idTroncal: number;
+    public idTipoEstacion: number;
 
     constructor() { }
 

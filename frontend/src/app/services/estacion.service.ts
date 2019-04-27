@@ -28,7 +28,7 @@ export class EstacionService {
   }
 
 
-  deleteEstacion(estacion: Estacion) {
-    return this.http.delete<Response>(URL_BASE_API_REST + 'estaciones/' + estacion);
+  deleteEstacion(idEstacion: number) {
+    return this.http.delete<Response>(URL_BASE_API_REST + 'estaciones/' + idEstacion);
   }
 }

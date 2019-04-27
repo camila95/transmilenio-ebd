@@ -24,10 +24,10 @@ import { HttpModule } from '@angular/http';
 import { NgxLoadingModule } from 'ngx-loading';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
-
+import { DataTableModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -54,6 +54,7 @@ import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableMo
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    DataTableModule,
     NgxLoadingModule.forRoot({}),
     ToastrModule.forRoot({
       timeOut: 7000,
@@ -67,7 +68,8 @@ import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableMo
     MatSelectModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule 
+    MatProgressSpinnerModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

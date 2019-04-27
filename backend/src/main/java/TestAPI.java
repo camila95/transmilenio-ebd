@@ -20,31 +20,38 @@ import com.google.gson.Gson;
 public class TestAPI {
 
     public static <TipoEstacion> void main(String[] args) {
-        /*
-         * after((req, res) -> { res.type("application/json"); });
-         * 
-         * path("/api/", () -> { OperadorAPI.routes(); GeneracionMasivaAPI.routes(); });
-         */
+
+        // after((req, res) -> { res.type("application/json"); });
 
         Session se = HibernateUtil.getSessionFactory().openSession();
         se.close();
 
-        port(8081);
+        port(8082);
         TestAPI testAPI = new TestAPI();
         testAPI.corsFilter();
+
+        path("/operador", () -> {
+            OperadorAPI.routes();
+        });
 
         path("/estaciones", () -> {
             EstacionAPI.routes();
         });
+
         path("/tipo-estaciones", () -> {
             TipoEstacionAPI.routes();
         });
+
         path("/troncales", () -> {
             TroncalAPI.routes();
         });
 
         path("/reporte", () -> {
             ReporteAPI.routes();
+        });
+
+        path("/generacion-masiva", () -> {
+            GeneracionMasivaAPI.routes();
         });
 
         /*

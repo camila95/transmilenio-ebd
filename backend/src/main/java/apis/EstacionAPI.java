@@ -4,6 +4,10 @@ import static spark.Spark.*;
 
 import java.math.BigDecimal;
 import modelos.Estacion;
+import modelos.TipoEstacion;
+import modelos.Troncal;
+import modelos.dto.EstacionDTO;
+
 import com.google.gson.Gson;
 
 import org.hibernate.Query;
@@ -60,7 +64,7 @@ public class EstacionAPI {
             try {
                 Session se = HibernateUtil.getSessionFactory().openSession();
                 Query q = se.createQuery("select e from Estacion e where e.tipoEstacion.idTipoEsta =: idTipoEsta ");
-                List<Estacion> tp = (List<Estacion>)  q.setParameter("idTipoEsta", id).list();
+                List<Estacion> tp = (List<Estacion>) q.setParameter("idTipoEsta", id).list();
                 res.status(!tp.isEmpty() ? 200 : 400);
                 se.close();
                 for (int i = 0; i < tp.size(); i++) {
@@ -75,7 +79,8 @@ public class EstacionAPI {
         });
 
         post("/", (req, res) -> {
-            Estacion estacion = new Gson().fromJson(req.body(), Estacion.class);
+            EstacionDTO estacionDTO = new Gson().fromJson(req.body(), EstacionDTO.class);
+            Estacion estacion = converseDtoTOEntity(estacionDTO);
             DAOGenerico<Estacion> dao = new DAOGenerico<Estacion>(Estacion.class);
             dao.insertar(estacion);
             return new Gson().toJson(estacion.toMap());
@@ -107,18 +112,41 @@ public class EstacionAPI {
             dao.insertar(estacion);
             return response;
         });
-        delete("/:id/", (req, res) -> {
+        delete("/:id", "application/json", (req, res) -> {
             BigDecimal id = new BigDecimal(req.params(":id"));
             DAOGenerico<Estacion> dao = new DAOGenerico<Estacion>(Estacion.class);
             Estacion estacion = dao.consultarPorId(id);
             String response = "{}";
             try {
                 dao.eliminar(estacion);
+                response = new Gson().toJson(estacion.toMap());
             } catch (Exception e) {
                 res.status(404);
             }
             return response;
         });
+    }
+
+    public static Estacion converseDtoTOEntity(EstacionDTO estacionDTO) {
+        Estacion estacion = new Estacion();
+        estacion.setNombre(estacionDTO.getNombre());
+        estacion.setDireccion(estacionDTO.getDireccion());
+        estacion.setLocalidad(estacionDTO.getLocalidad());
+        estacion.setLatitud(estacionDTO.getLatitud());
+        estacion.setLongitud(estacionDTO.getLongitud());
+
+        TipoEstacion tipoEstacion = new TipoEstacion();
+        tipoEstacion.setIdTipoEsta(estacionDTO.getIdTipoEstacion());
+        estacion.setTipoEstacion(tipoEstacion);
+
+        Troncal troncal = new Troncal();
+        troncal.setIdTroncal(estacionDTO.getIdTroncal());
+        estacion.setTroncal(troncal);
+
+        estacion.setOrden(estacionDTO.getOrden());
+        estacion.setEstaIncial(estacionDTO.getEstaIncial());
+        estacion.setEstaFinal(estacionDTO.getEstaFinal());
+        return estacion;
     }
 
 }

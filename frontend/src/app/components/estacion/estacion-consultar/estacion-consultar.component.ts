@@ -6,8 +6,7 @@ import { EstacionService } from 'src/app/services/estacion.service';
 import { Estacion } from 'src/app/models/estacion';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-estacion-consultar',
@@ -36,7 +35,8 @@ export class EstacionConsultarComponent implements OnInit {
     constructor(
       private toastrService: ToastrService,
       private tipoEstacionService: TipoEstacionService,
-      private estacionService: EstacionService
+      private estacionService: EstacionService,
+      private router: Router
       ) { 
         //const users = Array.from({length: 100}, (_, k) => createNewEstacion(k + 1));
        this.dataSource = new MatTableDataSource<Estacion>();
@@ -116,16 +116,26 @@ private table(){
                     }
 }
 
+private editar(idEstacion: number){
+  //this.router.navigate(['/estacion/administrar/'+idEstacion]);
+  this.router.navigate(['/estacion/administrar/']);
+  //falta
+}
+
 private eliminar(estacion: Estacion){
-this.estacionDelete = estacion;
-this.aceptar();
+  this.estacionDelete = estacion;
+  this.aceptar();
 }
 
 private aceptar(){
-  this.estacionService.deleteEstacion(this.estacionDelete).subscribe(
+  console.log("ACEPTO ELIMINAR "+this.estacionDelete)
+  this.estacionService.deleteEstacion(this.estacionDelete.idEstacion).subscribe(
     data => {
         if(data){
-
+          this.loading = true;
+          console.log("***elimino**");
+          this.obtenerListasTipoEstaciones();
+          this.loading = false;
         }                     
        
        

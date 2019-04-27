@@ -585,3 +585,7 @@ span[class="fa fa-angle-up"]{
 .example-margin {
     margin: 0 10px;
 }
+
+p-datatable > div > div.ui-datatable-scrollable-wrapper.ui-helper-clearfix.ng-star-inserted > div > div.ui-widget-header.ui-datatable-scrollable-header > div > table > thead{
+    background-color: #B71C1C !important;
+}
