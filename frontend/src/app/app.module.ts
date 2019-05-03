@@ -10,7 +10,6 @@ import { EncabezadoComponent } from './components/encabezado/encabezado.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EstacionCrearComponent } from './components/estacion/estacion-crear/estacion-crear.component';
 import { EstacionConsultarComponent } from './components/estacion/estacion-consultar/estacion-consultar.component';
-import { MaterialModule } from 'src/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule, ToastContainerModule  } from 'ngx-toastr';
 import { TroncalComponent } from './components/troncal/troncal.component';
@@ -22,12 +21,10 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archivo.component';
 import { HttpModule } from '@angular/http';
 import { NgxLoadingModule } from 'ngx-loading';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
-import { DataTableModule } from 'primeng/primeng';
+import { DataTablesModule } from 'angular-datatables';
+import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 @NgModule({
   declarations: [
@@ -53,22 +50,17 @@ import { DataTableModule } from 'primeng/primeng';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    DataTableModule,
+    DataTablesModule,
+    DropdownModule,
+    TableModule,
+    DataTablesModule,
+    FilterPipeModule,
     NgxLoadingModule.forRoot({}),
     ToastrModule.forRoot({
       timeOut: 7000,
       preventDuplicates: true
     }),
-    ToastContainerModule,
-    MatInputModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatTableModule,
-    MatSelectModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatProgressSpinnerModule
+    ToastContainerModule
     
   ],
   providers: [],

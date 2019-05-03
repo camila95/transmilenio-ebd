@@ -1,121 +1,117 @@
-<legend id="leyenda">{{nombreTitulo}}</legend>
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-<div class="col s11 push-s1">
-    <div class="col s3">
-        <div class="row">
-            <label for="reporte">Nombre</label>
-            <span class="text-danger">*</span>
-            <input id="nombre" type="text" class="form-control" maxlength="50" [(ngModel)]="estacionSelected.nombre"
-                [disabled]="isCrear">
-        </div>
-    </div>
 
-    <div class="col s3 push-s1">
-        <div class="row">
-            <label for="reporte">Dirección</label>
-            <span class="text-danger">*</span>
-            <input id="direccion" type="text" class="form-control" maxlength="50"
-                [(ngModel)]="estacionSelected.direccion" [disabled]="isCrear">
-        </div>
-    </div>
+<div class="container">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+    <fieldset id="borde">
+        <legend id="leyenda">{{nombreTitulo}}</legend>
 
-    <div class="col s3 push-s2">
-        <div class="row">
-            <label for="reporte">Localidad</label>
-            <span class="text-danger">*</span>
-            <input id="departamento" type="text" class="form-control" maxlength="50"
-                [(ngModel)]="estacionSelected.localidad" [disabled]="isCrear">
-        </div>
-    </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label for="reporte">Nombre</label>
+                        <span class="text-danger">*</span>
+                        <input id="nombre" type="text" class="form-control" maxlength="50" [(ngModel)]="estacionSelected.nombre"
+                        [disabled]="false">
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label for="reporte">Dirección</label>
+                        <span class="text-danger">*</span>
+                        <input id="direccion" type="text" class="form-control" maxlength="50"
+                        [(ngModel)]="estacionSelected.direccion" [disabled]="false">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12" id="margen">
+                                <label for="reporte">Localidad</label>
+                                <span class="text-danger">*</span>
+                                <input id="nombre" type="text" class="form-control" maxlength="50" [(ngModel)]="estacionSelected.localidad"
+                                [disabled]="false">
+                    </div>  
+                    <div class="col-md-6 col-sm-6 col-xs-12" id="margen">
+                                <label for="reporte">Latitud</label>
+                                <span class="text-danger">*</span>
+                                <input id="direccion" type="text" class="form-control" maxlength="50"
+                                [(ngModel)]="estacionSelected.latitud" [disabled]="false">
+                    </div>
+                </div>
+
+                <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12" id="margen">
+                                    <label for="reporte">Longitud</label>
+                                    <span class="text-danger">*</span>
+                                    <input id="nombre" type="text" class="form-control" maxlength="50" [(ngModel)]="estacionSelected.longitud"
+                                    [disabled]="false">
+                        </div>  
+                </div>   
+                
+                <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12" id="margen">
+                                    <label for="reporte">Troncal a la que pertenece</label>
+                                    <span class="text-danger">*</span>
+                                    <p-dropdown [options]="listaTroncalSelectItem" [(ngModel)]="estacionSelected.idTroncal" [style]="{'width':'150px'}">
+                                        <ng-template let-item pTemplate="item"> 
+                                         <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                            <div>{{item.label}}</div> 
+                                         </div>
+                                        </ng-template>
+                                    </p-dropdown>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12" id="margen">
+                                <label for="reporte">Tipo de Estación</label>
+                                <span class="text-danger">*</span>
+                                <p-dropdown [options]="listaTipoEstacionSelectItem" [(ngModel)]="estacionSelected.idTipoEstacion">
+                                    <ng-template let-item pTemplate="item">
+                                        <div class="ui-helper-clearfix">
+                                            <div>{{item.label}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                        </div>
+                </div> 
+                <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12" id="margen">
+                                    <label for="reporte">Orden</label>
+                                    <span class="text-danger">*</span>
+                                    <input id="nombre" type="number" class="form-control" maxlength="10" [(ngModel)]="estacionSelected.orden"
+                                    [disabled]="false">
+                        </div>  
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                    <div class="col-md-6 col-sm-12 col-xs-12" id="margen">
+                                    <label for="reporte">Inicia en la Troncal</label>
+                                    <span class="text-danger">*</span>
+                                    <p-dropdown [options]="listaEstacionInicialSelectItem" [(ngModel)]="estacionInicial" [style]="{'width':'150px'}" [disabled]="false">
+                                        <ng-template let-item pTemplate="item"> 
+                                         <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                                <div>{{item.label}}</div> 
+                                            </div>
+                                        </ng-template>
+                                    </p-dropdown>
+                                    </div>
+         
+                                    <div class="col-md-6 col-sm-12 col-xs-12" id="margen">
+                                    <label for="reporte">Finaliza en la Troncal</label>
+                                    <span class="text-danger">*</span>
+                                    <p-dropdown id ="listasDesplegables" [options]="listaEstacionFinalSelectItem" [(ngModel)]="estacionFinal" [style]="{'width':'150px'}" [disabled]="false"
+                                    placeholder="Select a City">
+                                        <ng-template let-item pTemplate="item"> 
+                                         <div style="position: relative;height: 25px;">
+                                            <div>{{item.label}}</div> 
+                                         </div>
+                                        </ng-template>
+                                    </p-dropdown>
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="col-xs-12 grupo_botones">
+                        <button *ngIf="!isCrear" type="button" class="btn btn-primary" (click)="guardarEstacion()">Guardar
+                        </button>
+                        <button *ngIf="isCrear"  type="button" class="btn btn-primary" (click)="redireccionar()">Cancelar
+                        </button>
+                </div>
+
+    </fieldset>
 </div>
-
-<div class="col s11 push-s1">
-    <div class="col s3">
-        <div class="row">
-            <label for="reporte">Latitud</label>
-            <input id="departamento" type="text" class="form-control" maxlength="50"
-                [(ngModel)]="estacionSelected.latitud" [disabled]="isCrear">
-        </div>
-    </div>
-
-    <div class="col s3 push-s1">
-        <div class="row">
-            <label for="reporte">Longitud</label>
-            <input id="departamento" type="text" class="form-control" maxlength="50"
-                [(ngModel)]="estacionSelected.longitud" [disabled]="isCrear">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col s3 push-s2">
-            <label for="tiposEstaciones"> Tipo de Estación </label>
-            <span class="text-danger">*</span>
-            <mat-form-field>
-                <mat-select [(ngModel)]="estacionSelected.idTipoEstacion">
-                    <mat-option *ngFor="let food of listaTipoEstacionSelectItem" [value]="food.value"
-                         [disabled]="isCrear">
-                        {{food.label}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </div>
-</div>
-
-
-<div class="col s11 push-s1">
-    <div class="col s3">
-        <label for="troncal">Troncal al que pertenece</label>
-        <span class="text-danger">*</span>
-        <mat-form-field>
-            <mat-select [(ngModel)]="estacionSelected.idTroncal">
-                <mat-option *ngFor="let food of listaTroncalSelectItem" [value]="food.value"
-                [disabled]="isCrear">
-                    {{food.label}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-
-    <div class="col s3 push-s1">
-        <div class="row">
-            <label for="reporte">Orden</label>
-            <span class="text-danger">*</span>
-            <input id="departamento" type="number" class="form-control" maxlength="10" value="0"
-                [(ngModel)]="estacionSelected.orden" [disabled]="isCrear">
-        </div>
-    </div>
-
-    <div class="col s3 push-s2">
-        <div class="row">
-            <label for="reporte">Inicia en la Troncal</label>
-            <span class="text-danger">*</span>
-            <section class="example-section">
-                <mat-radio-group [(ngModel)]="estacionInicial" [disabled]="isCrear">
-                    <mat-radio-button class="example-margin" value="SI">SI</mat-radio-button>
-                    <mat-radio-button class="example-margin" value="NO">NO</mat-radio-button>
-                </mat-radio-group>
-            </section>
-        </div>
-
-        <div class="row">
-            <label for="reporte">Finaliza en la Troncal</label>
-            <span class="text-danger">*</span>
-            <section class="example-section">
-                <mat-radio-group [(ngModel)]="estacionFinal" [disabled]="isCrear">
-                    <mat-radio-button class="example-margin" value="SI">SI</mat-radio-button>
-                    <mat-radio-button class="example-margin" value="NO">NO</mat-radio-button>
-                </mat-radio-group>
-            </section>
-        </div>
-    </div>
-</div>
-<br>
-
-<div *ngIf="isCrear" class="col s12 push-s10">
-    <a class="waves-effect #b71c1c red darken-4 btn" (click)="redireccionar()">Cancelar</a>
-</div>
-
-<div *ngIf="!isCrear" class="col s12 push-s10">
-    <a class="waves-effect #b71c1c red darken-4 btn" (click)="guardarEstacion()">Guardar</a>
 </div>

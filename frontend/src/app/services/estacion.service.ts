@@ -12,6 +12,9 @@ export class EstacionService {
 
   constructor(private http: HttpClient) { }
 
+  getEstacionById(id: number) {
+    return this.http.get<Response>(URL_BASE_API_REST + 'estaciones/id/' + id);
+  }
 
   getEstacionByTipoEstacion(id: number) {
     return this.http.get<Response>(URL_BASE_API_REST + 'estaciones/idTipoEstacion/' + id);
