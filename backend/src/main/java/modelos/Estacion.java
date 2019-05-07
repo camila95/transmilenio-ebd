@@ -204,6 +204,8 @@ public class Estacion implements java.io.Serializable {
         map.put("estaIncial", this.estaIncial);
         map.put("estaFinal", this.estaFinal);
         map.put("orden", this.orden);
+        map.put("idTipoEstacion", this.tipoEstacion.getIdTipoEsta());
+        map.put("idTroncal", this.troncal.getIdTroncal());
         return map;
     }
 

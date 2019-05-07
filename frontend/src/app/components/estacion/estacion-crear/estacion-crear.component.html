@@ -29,7 +29,6 @@
                     </div>  
                     <div class="col-md-6 col-sm-6 col-xs-12" id="margen">
                                 <label for="reporte">Latitud</label>
-                                <span class="text-danger">*</span>
                                 <input id="direccion" type="text" class="form-control" maxlength="50"
                                 [(ngModel)]="estacionSelected.latitud" [disabled]="false">
                     </div>
@@ -38,7 +37,6 @@
                 <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12" id="margen">
                                     <label for="reporte">Longitud</label>
-                                    <span class="text-danger">*</span>
                                     <input id="nombre" type="text" class="form-control" maxlength="50" [(ngModel)]="estacionSelected.longitud"
                                     [disabled]="false">
                         </div>  
@@ -106,9 +104,9 @@
                 </div>
 
                 <div class="col-xs-12 grupo_botones">
-                        <button *ngIf="!isCrear" type="button" class="btn btn-primary" (click)="guardarEstacion()">Guardar
+                        <button type="button" class="btn btn-primary" (click)="guardarEstacion()" style="margin-right: 15px !important;">Guardar
                         </button>
-                        <button *ngIf="isCrear"  type="button" class="btn btn-primary" (click)="redireccionar()">Cancelar
+                        <button type="button" class="btn btn-primary" (click)="redireccionar()">Cancelar
                         </button>
                 </div>
 

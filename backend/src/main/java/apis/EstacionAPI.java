@@ -43,13 +43,19 @@ public class EstacionAPI {
             return response;
         });
 
-        get("/:id/", (req, res) -> {
+        get("/:id", (req, res) -> {
             BigDecimal id = new BigDecimal(req.params(":id"));
             DAOGenerico<Estacion> dao = new DAOGenerico<Estacion>(Estacion.class);
+            Map<String, List<Map<String, Object>>> result = new HashMap<>();
+            List<Map<String, Object>> aux = new ArrayList<>();
             Estacion estacion = dao.consultarPorId(id);
-            String response = "{}";
+            String response = "";
             try {
-                response = new Gson().toJson(estacion.toMap());
+                for (int i = 0; i < 1; i++) {
+                    aux.add(estacion.toMap());
+                }
+                result.put("listasEstacion", aux);
+                response = new Gson().toJson(result);
             } catch (Exception e) {
                 res.status(404);
             }
@@ -63,7 +69,8 @@ public class EstacionAPI {
             Map<String, List<Map<String, Object>>> result = new HashMap<>();
             try {
                 Session se = HibernateUtil.getSessionFactory().openSession();
-                Query q = se.createQuery("select e from Estacion e where e.tipoEstacion.idTipoEsta =: idTipoEsta ");
+                Query q = se.createQuery(
+                        "select e from Estacion e join fetch e.tipoEstacion join fetch e.troncal where e.tipoEstacion.idTipoEsta =: idTipoEsta ");
                 List<Estacion> tp = (List<Estacion>) q.setParameter("idTipoEsta", id).list();
                 res.status(!tp.isEmpty() ? 200 : 400);
                 se.close();
@@ -85,31 +92,18 @@ public class EstacionAPI {
             dao.insertar(estacion);
             return new Gson().toJson(estacion.toMap());
         });
-        put("/:id/", (req, res) -> {
-            BigDecimal id = new BigDecimal(req.params(":id"));
+        put("/", (req, res) -> {
+            EstacionDTO estacionReq = new Gson().fromJson(req.body(), EstacionDTO.class);
+            Estacion estacion = converseDtoTOEntity(estacionReq);
             DAOGenerico<Estacion> dao = new DAOGenerico<Estacion>(Estacion.class);
-            Estacion estacion = dao.consultarPorId(id);
-            Estacion estacionReq = new Gson().fromJson(req.body(), Estacion.class);
             String response = "{}";
             try {
-                estacion.setNombre(estacionReq.getNombre());
-                estacion.setDireccion(estacionReq.getDireccion());
-                estacion.setEstaFinal(estacionReq.getEstaFinal());
-                estacion.setEstaIncial(estacionReq.getEstaIncial());
-                estacion.setLatitud(estacionReq.getLatitud());
-                estacion.setLocalidad(estacionReq.getLocalidad());
-                estacion.setLongitud(estacionReq.getLongitud());
-                estacion.setOrden(estacionReq.getOrden());
-                estacion.setRutaAlimens(estacionReq.getRutaAlimens());
-                estacion.setTipoEstacion(estacionReq.getTipoEstacion());
-                estacion.setTroncal(estacionReq.getTroncal());
-                estacion.setVagons(estacionReq.getVagons());
                 dao.actualizar(estacion);
                 response = new Gson().toJson(estacion.toMap());
             } catch (Exception e) {
                 res.status(404);
             }
-            dao.insertar(estacion);
+            // dao.insertar(estacion);
             return response;
         });
         delete("/:id", "application/json", (req, res) -> {

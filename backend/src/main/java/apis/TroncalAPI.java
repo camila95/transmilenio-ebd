@@ -29,7 +29,8 @@ public class TroncalAPI {
             Map<String, List<Map<String, Object>>> result = new HashMap<>();
             try {
                 Session se = HibernateUtil.getSessionFactory().openSession();
-                List<Troncal> troncal = (List<Troncal>) se.createQuery("from Troncal").list();
+                List<Troncal> troncal = (List<Troncal>) se
+                        .createQuery("SELECT tr FROM Troncal tr ORDER BY tr.nombreZona").list();
                 res.status(!troncal.isEmpty() ? 200 : 400);
                 se.close();
                 for (int i = 0; i < troncal.size(); i++) {

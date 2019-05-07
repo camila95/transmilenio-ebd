@@ -33,7 +33,8 @@ public class TipoEstacionAPI {
             Map<String, List<Map<String, Object>>> result = new HashMap<>();
             try {
                 Session se = HibernateUtil.getSessionFactory().openSession();
-                List<TipoEstacion> tp = (List<TipoEstacion>) se.createQuery("from TipoEstacion").list();
+                List<TipoEstacion> tp = (List<TipoEstacion>) se
+                        .createQuery("SELECT ti FROM TipoEstacion ti ORDER BY ti.nombre").list();
                 res.status(!tp.isEmpty() ? 200 : 400);
                 se.close();
                 for (int i = 0; i < tp.size(); i++) {
@@ -74,7 +75,7 @@ public class TipoEstacionAPI {
             String response = "{}";
             try {
                 operador.setNombre(operadorReq.getNombre());
-                operador.setEstacions(operadorReq.getEstacions());
+                // operador.setEstacions(operadorReq.getEstacions());
                 dao.actualizar(operador);
                 // response = new Gson().toJson(operador.toMap());
             } catch (Exception e) {

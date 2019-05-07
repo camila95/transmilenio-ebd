@@ -25,7 +25,6 @@ public class TipoEstacion implements java.io.Serializable {
 
     private BigDecimal idTipoEsta;
     private String nombre;
-    private Set<Estacion> estacions = new HashSet<>(0);
 
     public TipoEstacion() {
     }
@@ -33,12 +32,6 @@ public class TipoEstacion implements java.io.Serializable {
     public TipoEstacion(BigDecimal idTipoEsta, String nombre) {
         this.idTipoEsta = idTipoEsta;
         this.nombre = nombre;
-    }
-
-    public TipoEstacion(BigDecimal idTipoEsta, String nombre, Set<Estacion> estacions) {
-        this.idTipoEsta = idTipoEsta;
-        this.nombre = nombre;
-        this.estacions = estacions;
     }
 
     @Id
@@ -60,15 +53,6 @@ public class TipoEstacion implements java.io.Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoEstacion")
-    public Set<Estacion> getEstacions() {
-        return this.estacions;
-    }
-
-    public void setEstacions(Set<Estacion> estacions) {
-        this.estacions = estacions;
     }
 
     public Map<String, Object> toMap() {

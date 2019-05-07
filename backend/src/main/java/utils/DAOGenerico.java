@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transaction;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -51,7 +52,7 @@ public class DAOGenerico<T> {
     }
 
     public void actualizar(T obj) {
-        EntityManager session = HibernateUtil.getSessionFactory().createEntityManager();
+        EntityManager session = (EntityManager) HibernateUtil.getSessionFactory();
         try {
             session.getTransaction().begin();
             session.merge(obj);

@@ -179,7 +179,9 @@ export class EstacionCrearComponent implements OnInit {
               
               if(getValueArrayTipoEsta.length > 0){
                   for (let i = 0; i < getValueArrayTipoEsta.length; i++) {
-                    this.estacionSelected = getValueArrayTipoEsta[0];                   
+                    this.estacionSelected = getValueArrayTipoEsta[0];  
+                    this.estacionInicial = this.estacionSelected.estaIncial;
+                    this.estacionFinal = this.estacionSelected.estaFinal;                 
                   }
                   this.loading = false;
               } else {
@@ -235,7 +237,7 @@ export class EstacionCrearComponent implements OnInit {
                 if(data != null){
                     this.limpiarVariablesEdicion();
                     this.loading = false;
-                    this.toastrService.success("Creación exitosa", "Éxito");
+                    this.toastrService.success("Edición exitosa", "Éxito");
                     this.redireccionarConsultar();
                 } else {
                     this.loading = false;
@@ -261,12 +263,6 @@ export class EstacionCrearComponent implements OnInit {
             resultado = false;
         }
         if (!this.estacionSelected.orden) {
-            resultado = false;
-        }
-        if (!this.estacionSelected.longitud) {
-            resultado = false;
-        }
-        if (!this.estacionSelected.latitud) {
             resultado = false;
         }
         if(!this.estacionSelected.idTipoEstacion){
