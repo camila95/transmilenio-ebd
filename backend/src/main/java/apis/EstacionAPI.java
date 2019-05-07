@@ -28,15 +28,20 @@ public class EstacionAPI {
         get("/", (req, res) -> {
             String response = "";
             List<Map<String, Object>> aux = new ArrayList<>();
+            Map<String, List<Map<String, Object>>> result = new HashMap<>();
             try {
                 Session se = HibernateUtil.getSessionFactory().openSession();
-                List<Estacion> estacion = (List<Estacion>) se.createQuery("from Estacion").list();
+                List<Estacion> estacion = (List<Estacion>) se.createQuery(
+                        "select e from Estacion e join fetch e.tipoEstacion join fetch e.troncal order by e.nombre")
+                        .list();
                 res.status(!estacion.isEmpty() ? 200 : 400);
                 se.close();
+
                 for (int i = 0; i < estacion.size(); i++) {
                     aux.add(estacion.get(i).toMap());
                 }
-                response = new Gson().toJson(aux);
+                result.put("listasEstacion", aux);
+                response = new Gson().toJson(result);
             } catch (Exception e) {
                 res.status(404);
             }
@@ -70,7 +75,7 @@ public class EstacionAPI {
             try {
                 Session se = HibernateUtil.getSessionFactory().openSession();
                 Query q = se.createQuery(
-                        "select e from Estacion e join fetch e.tipoEstacion join fetch e.troncal where e.tipoEstacion.idTipoEsta =: idTipoEsta ");
+                        "select e from Estacion e join fetch e.tipoEstacion join fetch e.troncal where e.tipoEstacion.idTipoEsta =: idTipoEsta order by e.nombre ");
                 List<Estacion> tp = (List<Estacion>) q.setParameter("idTipoEsta", id).list();
                 res.status(!tp.isEmpty() ? 200 : 400);
                 se.close();

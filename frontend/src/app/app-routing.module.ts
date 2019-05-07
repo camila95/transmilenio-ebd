@@ -7,8 +7,9 @@ import { TroncalCrearComponent } from './components/troncal/troncal-crear/tronca
 import { TroncalConsultarComponent } from './components/troncal/troncal-consultar/troncal-consultar.component';
 import { GenerarDatosComponent } from './components/cargar-archivo/generar-datos/generar-datos.component';
 import { ServicioWebComponent } from './components/cargar-archivo/servicio-web/servicio-web.component';
-import { ReportesComponent } from './components/reportes/reportes.component';
 import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archivo.component';
+import { ReporteRutaAlimenComponent } from './components/reportes/ruta-alimen/reporte-ruta-alimen.component';
+import { ReporteRutaTroncalComponent } from './components/reportes/ruta-troncal/reporte-ruta-troncal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [
 
   { path: 'archivo/generardatos', component: GenerarDatosComponent },
   { path: 'archivo/servicioweb', component: ServicioWebComponent },
-  { path: 'reportes', component: ReportesComponent },
+  { path: 'reporte/ruta-alimen', component: ReporteRutaAlimenComponent },
+  { path: 'reporte/ruta-troncal', component: ReporteRutaTroncalComponent },
   { path: 'archivo/cargararchivo', component: CargarArchivoComponent }
 ];
 

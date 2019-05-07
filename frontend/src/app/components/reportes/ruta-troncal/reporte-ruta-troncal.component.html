@@ -1,0 +1,42 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+<div class="container">
+  <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px !important;">
+    <fieldset id="borde">
+      <legend id="leyenda">Reporte Troncal</legend>
+    
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <label for="reporte">Estación</label>
+              <span class="text-danger">*</span>
+                <p-dropdown [options]="listaEstacionSelectItem" [(ngModel)]="estacionSel" [style]="{'width':'150px'}">
+                <ng-template let-item pTemplate="item"> 
+                  <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                    <div>{{item.label}}</div> 
+                  </div>
+                </ng-template>
+                </p-dropdown>
+          </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <label for="reporte">Sentido</label>
+              <span class="text-danger">*</span>
+                <p-dropdown [options]="listaSentidoSelectItem" [(ngModel)]="sentidoSel" [style]="{'width':'150px'}">
+                <ng-template let-item pTemplate="item"> 
+                  <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                    <div>{{item.label}}</div> 
+                  </div>
+                </ng-template>
+                </p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-xs-12 grupo_botones" style="margin-top: 30px !important;">
+            <button type="button" class="btn btn-primary" (click)="obtenerReporte()" style="margin-right: 15px !important;">Generar Reporte
+            </button>
+            <button type="button" class="btn btn-primary" (click)="redireccionar()">Cancelar
+            </button>
+    </div>
+    </fieldset>
+  </div>
+</div>

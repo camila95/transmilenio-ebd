@@ -1,0 +1,76 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+<div class="container">
+  <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px !important;">
+    <fieldset id="borde">
+      <legend id="leyenda">Reporte Ruta Alimentadores</legend>
+    
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <label for="reporte">Estación</label>
+              <span class="text-danger">*</span>
+                <p-dropdown [options]="listaEstacionSelectItem" [(ngModel)]="estacionSel" [style]="{'width':'150px'}" (onClick)=obtenerListasRutaAlimen()>
+                <ng-template let-item pTemplate="item"> 
+                  <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                    <div>{{item.label}}</div> 
+                  </div>
+                </ng-template>
+                </p-dropdown>
+          </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <label for="reporte">Ruta Alimentadora</label>
+              <span class="text-danger">*</span>
+                <p-dropdown [options]="listaRutaAlimenSelectItem" [(ngModel)]="rutaAlimenSel" [style]="{'width':'150px'}" [disabled]="!isHabilitada">
+                <ng-template let-item pTemplate="item"> 
+                  <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                    <div>{{item.label}}</div> 
+                  </div>
+                </ng-template>
+                </p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-xs-12 grupo_botones" style="margin-top: 30px !important;">
+            <button type="button" class="btn btn-primary" (click)="obtenerReporte()" style="margin-right: 15px !important;">Generar Reporte
+            </button>
+            <button type="button" class="btn btn-primary" (click)="redireccionar()">Cancelar
+            </button>
+    </div>
+    </fieldset>
+  </div>
+</div>
+
+        <!--<div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="table-responsive" style="padding-bottom: 40px !important; margin-top: 30px !important;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Nombre</th>
+                      <th>Dirección</th>
+                      <th>Localidad</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let info of listaReporte; let i = index " [attr.data-index]="i">
+                      <td>{{i+1}}</td> 
+                      <td>{{info.nombre}}</td> 
+                      <td>{{info.direccion}}</td> 
+                      <td>{{info.localidad}}</td> 
+                          <td>
+                            <div>                      
+                              <i class="fa fa-search iconAccion" title="Ver detalle" aria-hidden="true" (click)="editar(info.idEstacion)" style="color: #f9b12a !important;"></i>
+                              <i class="fa fa-trash iconAccion" title="Eliminar combinación" aria-hidden="true" (click)="eliminar(info.idEstacion)" style="color: #f13434 !important;"></i>
+                              <button type="button" id="buttonContinuar" data-toggle="modal" data-target="#modalEliminar" style="display:none !important;">
+                              </button>
+                              </div>
+                            </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+         </div>-->

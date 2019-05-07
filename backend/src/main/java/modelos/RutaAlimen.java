@@ -1,7 +1,9 @@
 package modelos;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -104,6 +106,16 @@ public class RutaAlimen implements java.io.Serializable {
 
     public void setParRutAlims(Set<ParRutAlim> parRutAlims) {
         this.parRutAlims = parRutAlims;
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("idRutaAlimen", this.idRutaAlimen);
+        map.put("idOperador", this.operador.getIdOperador());
+        map.put("idEstacion", this.estacion.getIdEstacion());
+        map.put("codigo", this.codigo);
+        map.put("nombre", this.nombre);
+        return map;
     }
 
 }

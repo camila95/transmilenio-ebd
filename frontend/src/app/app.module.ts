@@ -17,7 +17,6 @@ import { TroncalCrearComponent } from './components/troncal/troncal-crear/tronca
 import { TroncalConsultarComponent } from './components/troncal/troncal-consultar/troncal-consultar.component';
 import { GenerarDatosComponent } from './components/cargar-archivo/generar-datos/generar-datos.component';
 import { ServicioWebComponent } from './components/cargar-archivo/servicio-web/servicio-web.component';
-import { ReportesComponent } from './components/reportes/reportes.component';
 import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archivo.component';
 import { HttpModule } from '@angular/http';
 import { NgxLoadingModule } from 'ngx-loading';
@@ -25,6 +24,8 @@ import { DataTablesModule } from 'angular-datatables';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { ReporteRutaTroncalComponent } from './components/reportes/ruta-troncal/reporte-ruta-troncal.component';
+import { ReporteRutaAlimenComponent } from './components/reportes/ruta-alimen/reporte-ruta-alimen.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     TroncalConsultarComponent,
     GenerarDatosComponent,
     ServicioWebComponent,
-    ReportesComponent,
+    ReporteRutaTroncalComponent,
+    ReporteRutaAlimenComponent,
     CargarArchivoComponent
 
   ],

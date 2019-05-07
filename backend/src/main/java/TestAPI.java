@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 import javax.persistence.EntityManager;
 import javax.servlet.MultipartConfigElement;
 
+import modelos.RutaAlimen;
 import modelos.Test;
 import utils.HibernateUtil;
 import apis.*;
@@ -48,6 +49,10 @@ public class TestAPI {
 
         path("/reporte", () -> {
             ReporteAPI.routes();
+        });
+
+        path("/ruta-alimen", () -> {
+            RutaAlimenAPI.routes();
         });
 
         path("/generacion-masiva", () -> {
