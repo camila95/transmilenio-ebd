@@ -20,7 +20,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     listaEstacionSelectItem: SelectItem[] = [];
     estacionSel : number;
     listaSentidoSelectItem: SelectItem[] = [];
-    sentidoSel: string;
+    sentidoSel: number;
 
     constructor(
       private  reporteService: ReporteService,
@@ -71,15 +71,15 @@ import { Router, ActivatedRoute } from '@angular/router';
   private obtenerListasSentido(){
     this.loading = true;  
     this.listaSentidoSelectItem = [];
-    this.listaSentidoSelectItem.push({ label: 'Seleccione', value: 'seleccione' });
-    this.listaSentidoSelectItem.push({ label: 'Norte', value: 'N' });
-    this.listaSentidoSelectItem.push({ label: 'Sur', value: 'S' });
-    this.listaSentidoSelectItem.push({ label: 'Este', value: 'E' });
-    this.listaSentidoSelectItem.push({ label: 'Oeste', value: 'O' });
-    this.listaSentidoSelectItem.push({ label: 'Sureste', value: 'SE' });
-    this.listaSentidoSelectItem.push({ label: 'Suroeste', value: 'SO' });
-    this.listaSentidoSelectItem.push({ label: 'Noreste', value: 'NE' });
-    this.listaSentidoSelectItem.push({ label: 'Noroeste', value: 'NO' });
+    this.listaSentidoSelectItem.push({ label: 'Seleccione', value: 0 });
+    this.listaSentidoSelectItem.push({ label: 'Norte', value: 1 });
+    this.listaSentidoSelectItem.push({ label: 'Sur', value: 2 });
+    this.listaSentidoSelectItem.push({ label: 'Este', value: 3 });
+    this.listaSentidoSelectItem.push({ label: 'Oeste', value: 4 });
+    this.listaSentidoSelectItem.push({ label: 'Sureste', value: 5 });
+    this.listaSentidoSelectItem.push({ label: 'Suroeste', value: 6 });
+    this.listaSentidoSelectItem.push({ label: 'Noreste', value: 7 });
+    this.listaSentidoSelectItem.push({ label: 'Noroeste', value: 8 });
 
     this.sentidoSel = this.listaSentidoSelectItem[0].value;
     this.loading = false;    
@@ -91,7 +91,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
     private obtenerReporte(){
       if(this.validarDatos()){
-        this.reporteService.getReporte(1,4).subscribe(
+        this.reporteService.getReporteRutaTroncal(this.estacionSel,this.sentidoSel).subscribe(
           data => {
               if (data.status === RESPONSE_OK) {
                 

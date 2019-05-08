@@ -27,7 +27,7 @@ public class TestAPI {
         Session se = HibernateUtil.getSessionFactory().openSession();
         se.close();
 
-        port(8082);
+        port(8081);
         TestAPI testAPI = new TestAPI();
         testAPI.corsFilter();
 

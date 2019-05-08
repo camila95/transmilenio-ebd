@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EstacionService } from 'src/app/services/estacion.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RutaAlimenService } from 'src/app/services/rutaAlimen.service';
+import { ConsultaRutaAlimenDTO } from 'src/app/models/dto/consultaRutaAlimenDTO';
 
 @Component({
     selector: 'app-reporte-ruta-alimen',
@@ -25,7 +26,7 @@ import { RutaAlimenService } from 'src/app/services/rutaAlimen.service';
     listaRutaAlimen: Array<RutaAlimen> = [];
     listaRutaAlimenSelectItem: SelectItem[] = [];
     rutaAlimenSel : number;
-
+    listaReporteAlimen : Array<ConsultaRutaAlimenDTO> = [];
 
     constructor(
       private toastrService: ToastrService,
@@ -119,7 +120,27 @@ private redireccionar() {
 
 private obtenerReporte(){
   this.loading = true;
-  //this.estacionSel, this.rutaAlimenSel
+  this.reporteService.getReporteRutaAlimen(this.estacionSel, this.rutaAlimenSel).subscribe(
+    data => {
+      var getKeysArray = Object.keys(data);
+      var getValueArrayReporteRutaAlimen = Object.values(data)[0];
+
+      this.listaReporteAlimen = []; 
+      if(getValueArrayReporteRutaAlimen.length > 0){
+        for (let i = 0; i < getValueArrayReporteRutaAlimen.length; i++) {
+          this.listaReporteAlimen.push(getValueArrayReporteRutaAlimen[i]);         
+        }
+        this.loading = false;
+      } else {
+        this.loading = false;
+        this.toastrService.error("Error en las listas de las rutas alimentadoras", "Error");                
+        }  
+    },error => {
+      this.loading = false;
+      this.toastrService.error("Error en el servicio", "Error");
 }
+);
+
+ }
 
   }
