@@ -80,34 +80,29 @@ public class ReporteAPI {
             }
             return response;
         });
-        
 
         get("/ruta-troncal/:idEstacion/:idSentido", (req, res) -> {
             String response = "";
             BigDecimal idEstacion = new BigDecimal(req.params(":idEstacion"));
             BigDecimal idSentido = new BigDecimal(req.params(":idSentido"));
             List<ConsultaTroncalDTO> lista = new ArrayList<>();
-           
+
             String sentido = obtenerSentido(idSentido);
             Connection c = conexion();
-            String consulta = 
-            "SELECT o.NOMBRE, e.NOMBRE, v.NOMBRE, r.NOMBRE, "
-            + "DECODE(r.SENTIDO, 'N', 'Norte', 'S','Sur','W','Oeste','E','Este','NW','Noroeste','NE','Noreste','SW','Suroeste','Sureste'), "
-            + "DECODE(h.rango, 'E', 'Lunes-Viernes', 'S', 'Sábado', 'Domingo'), "
-            + "TO_CHAR(h.HORA_COMIENZO, 'HH24:MI:SS'), TO_CHAR(h.HORA_FIN, 'HH24:MI:SS') "
-            + "FROM ESTACION e "
-            + "INNER JOIN TIPO_ESTACION te ON te.ID_TIPO_ESTA = e.ID_TIPO_ESTA "
-            + "INNER JOIN TRONCAL t ON t.ID_TRONCAL = e.ID_TRONCAL "
-            + "INNER JOIN OPERADOR o ON o.ID_OPERADOR = t.ID_OPERADOR "
-            + "INNER JOIN VAGON v ON v.ID_ESTACION = e.ID_ESTACION "
-            + "INNER JOIN RUTA_ESTA re ON re.ID_VAGON = v.ID_VAGON "
-            + "INNER JOIN RUTA r ON r.ID_RUTA = re.ID_RUTA "
-            + "INNER JOIN RUTA_HORA rh ON rh.ID_RUTA = r.ID_RUTA "
-            + "INNER JOIN HORARIO h ON h.ID_HORARIO = rh.ID_HORARIO "
-            + "WHERE e.ID_ESTACION = ? "
-            + "AND r.SENTIDO = '?' "
-            + "ORDER BY v.ID_VAGON ";
-            
+            String consulta = "SELECT o.NOMBRE, e.NOMBRE, v.NOMBRE, r.NOMBRE, "
+                    + "DECODE(r.SENTIDO, 'N', 'Norte', 'S','Sur','W','Oeste','E','Este','NW','Noroeste','NE','Noreste','SW','Suroeste','Sureste'), "
+                    + "DECODE(h.rango, 'E', 'Lunes-Viernes', 'S', 'Sábado', 'Domingo'), "
+                    + "TO_CHAR(h.HORA_COMIENZO, 'HH24:MI:SS'), TO_CHAR(h.HORA_FIN, 'HH24:MI:SS') " + "FROM ESTACION e "
+                    + "INNER JOIN TIPO_ESTACION te ON te.ID_TIPO_ESTA = e.ID_TIPO_ESTA "
+                    + "INNER JOIN TRONCAL t ON t.ID_TRONCAL = e.ID_TRONCAL "
+                    + "INNER JOIN OPERADOR o ON o.ID_OPERADOR = t.ID_OPERADOR "
+                    + "INNER JOIN VAGON v ON v.ID_ESTACION = e.ID_ESTACION "
+                    + "INNER JOIN RUTA_ESTA re ON re.ID_VAGON = v.ID_VAGON "
+                    + "INNER JOIN RUTA r ON r.ID_RUTA = re.ID_RUTA "
+                    + "INNER JOIN RUTA_HORA rh ON rh.ID_RUTA = r.ID_RUTA "
+                    + "INNER JOIN HORARIO h ON h.ID_HORARIO = rh.ID_HORARIO " + "WHERE e.ID_ESTACION = ? "
+                    + "AND r.SENTIDO = ? " + "ORDER BY v.ID_VAGON ";
+
             try {
                 ps = conn.prepareStatement(consulta);
                 ps.setBigDecimal(1, idEstacion);
@@ -133,8 +128,10 @@ public class ReporteAPI {
             } catch (Exception e) {
                 res.status(404);
             }
-            return response;
+
+            return obtenerArchivo(lista);
         });
+    }
 
     public static Connection conexion() {
         try {
@@ -176,6 +173,16 @@ public class ReporteAPI {
         default:
             break;
         }
+        return sentido;
+    }
+
+    public static byte[] obtenerArchivo(List<ConsultaTroncalDTO> lista) {
+        // crear Archivo
+        // recorrerlo
+        // adiconar la info de la lista
+        // cerrar archivo
+        // retornarlo
+        return null;
     }
 
 }

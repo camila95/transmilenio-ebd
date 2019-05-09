@@ -26,6 +26,7 @@ import { TableModule } from 'primeng/table';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { ReporteRutaTroncalComponent } from './components/reportes/ruta-troncal/reporte-ruta-troncal.component';
 import { ReporteRutaAlimenComponent } from './components/reportes/ruta-alimen/reporte-ruta-alimen.component';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ReporteRutaAlimenComponent } from './components/reportes/ruta-alimen/re
     DropdownModule,
     TableModule,
     DataTablesModule,
+    PaginatorModule,
     FilterPipeModule,
     NgxLoadingModule.forRoot({}),
     ToastrModule.forRoot({

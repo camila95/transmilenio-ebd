@@ -93,9 +93,14 @@ import { Router, ActivatedRoute } from '@angular/router';
       if(this.validarDatos()){
         this.reporteService.getReporteRutaTroncal(this.estacionSel,this.sentidoSel).subscribe(
           data => {
-              if (data.status === RESPONSE_OK) {
-                
-              }
+              this.loading = true;
+              let file = new Blob([data], { type: 'application/octet-stream' });
+              const iframe = document.createElement('iframe');
+              iframe.style.display = 'none';
+              iframe.src = URL.createObjectURL(file);
+              document.body.appendChild(iframe);
+              iframe.contentWindow.print();
+              this.loading = false;
             },
             error => {
                 //this.toastrService.error(error.text, "Error");
@@ -103,6 +108,7 @@ import { Router, ActivatedRoute } from '@angular/router';
         );
        }
     }
+
   
     private validarDatos(){
       let resultado = true;

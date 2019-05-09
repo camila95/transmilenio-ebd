@@ -1,51 +1,52 @@
-<legend id="leyenda">Generación datos</legend>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 
-<!--<div class="col s11 push-s1">
-    <div class="row">
-      
+<div class="container">
+  <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px !important;">
+    <fieldset id="borde">
+      <legend id="leyenda">Generación Datos</legend>
+    
+        <div class="row">
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <label for="reporte">Tabla Operador</label>
+            <input id="operador" type="number" class="form-control" maxlength="5" [(ngModel)]="datoOperador"
+            [disabled]="false">
+          </div>
 
-        <div class="col s3">
-            <label for="troncal">Seleccione la tabla:</label>
-            <span class="text-danger">*</span>
-            <mat-form-field>
-                <mat-select>
-                    <mat-option *ngFor="let tabla of tablas">
-                        {{tabla}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-        <div class="col s3">
-            <div class="row">
-                <label for="reporte">numero de registros:*</label>
-                <input id="nombre_zona" type="number" class="form-control" maxlength="50" value="">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <label for="reporte">Tabla Ruta</label>
+              <input id="estacion" type="number" class="form-control" maxlength="5" [(ngModel)]="datoRuta"
+              [disabled]="false">  
             </div>
+    
+
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <label for="reporte">Tabla Horario</label>
+            <input id="estacion" type="number" class="form-control" maxlength="5" [(ngModel)]="datoHorario"
+            [disabled]="false">  
+          </div>
         </div>
 
-        <div class="col s3">
-            <a class="waves-effect #b71c1c red darken-4 btn">Generar</a>
-        </div>
-    </div>
+        <div class="row" style="margin-top:25px !important;">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <label for="reporte">Tabla Tipo Estación</label>
+              <input id="operador" type="number" class="form-control" maxlength="5" [(ngModel)]="datoTipoEstacion"
+              [disabled]="false">
+            </div>    
+  
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <label for="reporte">Tabla Tipo Paradero</label>
+              <input id="estacion" type="number" class="form-control" maxlength="5" [(ngModel)]="datoTipoParadero"
+              [disabled]="false">  
+            </div>
+          </div>
 
+          <div class="col-xs-12 grupo_botones">
+            <button type="button" class="btn btn-primary" (click)="generarDatos()" style="margin-right: 15px !important;">Generar Datos
+            </button>
+            <button type="button" class="btn btn-primary" (click)="redireccionar()">Cancelar
+            </button>
+          </div>
 
+    </fieldset>
+  </div>
 </div>
-
-
-
-<table>
-<tr>
-  <td><strong>Nombre</strong></td>
-  <td><strong>Sentido</strong></td>
-</tr>
-
-<tr>
-  <td>Ruta 1</td>
-  <td>Ruta 2</td>
-</tr>
-
-<tr>
-  <td>no</td>
-  <td>su</td>
-</tr>
-</table>-->

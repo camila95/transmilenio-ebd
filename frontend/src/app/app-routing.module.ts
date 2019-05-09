@@ -19,11 +19,11 @@ const routes: Routes = [
   { path: 'troncal/crear', component: TroncalCrearComponent },
   { path: 'troncal/consultar', component: TroncalConsultarComponent },
 
-  { path: 'archivo/generardatos', component: GenerarDatosComponent },
-  { path: 'archivo/servicioweb', component: ServicioWebComponent },
-  { path: 'reporte/ruta-alimen', component: ReporteRutaAlimenComponent },
   { path: 'reporte/ruta-troncal', component: ReporteRutaTroncalComponent },
-  { path: 'archivo/cargararchivo', component: CargarArchivoComponent }
+  { path: 'reporte/ruta-alimen', component: ReporteRutaAlimenComponent },
+  { path: 'archivo/generar-datos', component: GenerarDatosComponent },
+  { path: 'archivo/servicio-web', component: ServicioWebComponent },
+  { path: 'archivo/cargar-archivo', component: CargarArchivoComponent }
 ];
 
 @NgModule({
