@@ -2,7 +2,14 @@ package apis;
 
 import static spark.Spark.*;
 
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.Console;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,11 +28,18 @@ import utils.HibernateUtil;
 import utils.JsonTransformer;
 
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReporteAPI {
 
@@ -177,12 +191,48 @@ public class ReporteAPI {
     }
 
     public static byte[] obtenerArchivo(List<ConsultaTroncalDTO> lista) {
-        // crear Archivo
-        // recorrerlo
-        // adiconar la info de la lista
-        // cerrar archivo
-        // retornarlo
-        return null;
+        /*
+         * FileWriter fw = new FileWriter("./datos.txt"); BufferedWriter bw = new
+         * BufferedWriter(fw); for (int i = 0; i < lista.size(); i++) {
+         * bw.write(lista.get(i).getNombreEstacion()); bw.newLine(); } bw.close();
+         */
+        byte[] bytes = {};
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Employee Data");
+
+        Map<String, Object[]> data = new TreeMap<String, Object[]>();
+        data.put("1", new Object[] { "ID", "NAME", "LASTNAME" });
+        data.put("2", new Object[] { 1, "Amit", "Shukla" });
+        data.put("3", new Object[] { 2, "Lokesh", "Gupta" });
+        data.put("4", new Object[] { 3, "John", "Adwards" });
+        data.put("5", new Object[] { 4, "Brian", "Schultz" });
+
+        Set<String> keyset = data.keySet();
+        int rownum = 0;
+        for (String key : keyset) {
+            Row row = sheet.createRow(rownum++);
+            Object[] objArr = data.get(key);
+            int cellnum = 0;
+            for (Object obj : objArr) {
+                Cell cell = row.createCell(cellnum++);
+                if (obj instanceof String)
+                    cell.setCellValue((String) obj);
+                else if (obj instanceof Integer)
+                    cell.setCellValue((Integer) obj);
+            }
+        }
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try {
+            workbook.write(bos);
+            bos.close();
+            System.out.println("howtodoinjava_demo.xlsx written successfully on disk.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        bytes = bos.toByteArray();
+        return bytes;
     }
 
 }

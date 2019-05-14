@@ -138,9 +138,7 @@ private obtenerReporte(){
     },error => {
       this.loading = false;
       this.toastrService.error("Error en el servicio", "Error");
-}
-);
-
+    });
  }
 
   }

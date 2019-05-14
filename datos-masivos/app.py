@@ -1,5 +1,7 @@
 import json
 
+from flask_cors import CORS
+
 from flask import Flask, request, Response
 from flask_sqlalchemy import SQLAlchemy
 from mixer.backend.flask import mixer
@@ -8,6 +10,7 @@ import threading
 from math import ceil
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://{usuario}:{clave}@{host}/{bd}'.format(
     usuario='root',
     clave='jUVqYRPu5Hk7HmwT',
@@ -117,6 +120,19 @@ def tipo_estacion_view():
         queryset = queryset[100*(pagina-1):100*pagina]
     rs = json.dumps([(dict(row.json())) for row in queryset])
     return Response(json.dumps(rs), status=202, mimetype='application/json')
+
+
+@app.route('/masivo/operador/count', methods=['GET'])
+def operador_count_view():
+    queryset = Operador.query.count()
+    rs = {'count': queryset}  
+    return Response(json.dumps(rs), status=200, mimetype='application/json')
+    
+@app.route('/masivo/tipo-estacion/count', methods=['GET'])
+def tipo_estacion_count_view():
+    queryset = TipoEstacion.query.count()
+    rs = {'count': queryset}
+    return Response(json.dumps(rs), status=200, mimetype='application/json')
 
 if __name__ == "__main__":
     db.create_all()

@@ -45,6 +45,9 @@ dependencies {
     compile group: 'javax.inject', name: 'javax.inject', version: '1'
     compile group: 'javax.ejb', name: 'javax.ejb-api', version: '3.2.2'
     compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.5.0'
+    compile group: 'org.apache.poi', name: 'poi', version: '3.9'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
+
 
     implementation 'com.github.javafaker:javafaker:0.17.2'    
 

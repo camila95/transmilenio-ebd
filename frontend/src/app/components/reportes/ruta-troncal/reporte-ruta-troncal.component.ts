@@ -6,6 +6,7 @@ import { Estacion } from 'src/app/models/estacion';
 import { ToastrService } from 'ngx-toastr';
 import { EstacionService } from 'src/app/services/estacion.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { saveAs } from 'file-saver';
 
 @Component({
     selector: 'app-reporte-ruta-troncal',
@@ -100,6 +101,12 @@ import { Router, ActivatedRoute } from '@angular/router';
               iframe.src = URL.createObjectURL(file);
               document.body.appendChild(iframe);
               iframe.contentWindow.print();
+              /*
+              var FileSaver = require('file-saver');
+              let file = new Blob([data], { type: 'application/octet-stream' });
+              FileSaver.saveAs(data, file);
+              var fileURL = URL.createObjectURL(data);
+              window.open(fileURL);*/
               this.loading = false;
             },
             error => {
@@ -111,9 +118,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
   
     private validarDatos(){
-      let resultado = true;
-      if(resultado){
-  
+      let resultado = false;
+      if(this.estacionSel > 0 && this.sentidoSel > 0){
+        resultado = true;
       }
       return resultado;
     }

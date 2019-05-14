@@ -1,3 +1,56 @@
-<p>
-   Aca va la pagina para hacer el servicio web
-</p>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+<div class="container">
+  <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px !important;">
+    <fieldset id="borde">
+      <legend id="leyenda">Web Services</legend>
+    
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <label for="reporte">Tabla</label>
+              <span class="text-danger">*</span>
+                <p-dropdown [options]="listaTablaSelectItem" [(ngModel)]="tablaSel" [style]="{'width':'150px'}" (onClick)=obtenerListasRutaAlimen()>
+                <ng-template let-item pTemplate="item"> 
+                  <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                    <div>{{item.label}}</div> 
+                  </div>
+                </ng-template>
+                </p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+           <div class="row">
+              <div class="col-md-5 col-sm-5 col-xs-11">
+                 <fieldset id="borde">
+                    <legend id="leyenda">MySQL</legend>
+                    <p>Número de registros existentes:</p>
+                    <img class="" src="assets/images/mySql.png" style="width: 50% !important; margin-left: 27% !important;">
+                    <div class="col-xs-12 grupo_botones" style="text-align: center !important;">
+                        <button type="button" class="btn btn-primary" (click)="obtenerRegistros()">Obtener
+                        </button>
+                     </div>
+                  </fieldset>
+               </div>
+               <div class="col-md-2 col-sm-1 col-xs-1">
+                     <img class="" src="assets/images/datos.png" style="width: 70% !important; margin-left: 27% !important; margin-top: 70% !important;">
+               </div>
+
+                  <div class="col-md-5 col-sm-5 col-xs-11">
+                     <fieldset id="borde">
+                        <legend id="leyenda">Oracle</legend>
+                        <p>Número de registros a insertar:</p>
+                        <img class="" width="650" src="assets/images/oracle.png" style="width: 50% !important; margin-left: 25% !important;">
+                        <div class="col-xs-12 grupo_botones" style="text-align: center !important;">
+                              <button type="button" class="btn btn-primary" (click)="insertarRegistros()">Insertar
+                              </button>
+                        </div> 
+                      </fieldset>
+                   </div>
+                </div>
+         </div>
+              
+
+    </fieldset>
+  </div>
+</div> 
