@@ -1,45 +1,84 @@
-<legend id="leyenda">Consultar Estaciones</legend>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 
-<div class="col s11 push-s1">
-<div class="row">
-    <div class="col s3 push-s2">
-        <label for="tiposEstaciones"> Tipo de Estación </label>
-        <span class="text-danger">*</span>
-        <mat-form-field>
-            <mat-select [(ngModel)]="tipoEstacionSel" (selectionChange)="obtenerEstacionByTipoEstacion($event)"> 
-                <mat-option *ngFor="let food of listaTipoEstacionSelectItem" [value]="food.value">
-                    {{food.label}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+<div class="container">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <fieldset id="borde">
+      <legend id="leyenda">Consultar Estaciones</legend>
+    
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <label for="reporte">Tipo de Estación</label>
+              <span class="text-danger">*</span>
+                <p-dropdown [options]="listaTipoEstacionSelectItem" [(ngModel)]="tipoEstacionSel" [style]="{'width':'150px'}" [disabled]="isCrear" 
+                (onClick)="obtenerEstacionByTipoEstacion()">
+                <ng-template let-item pTemplate="item"> 
+                  <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                    <div>{{item.label}}</div> 
+                  </div>
+                </ng-template>
+                </p-dropdown>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="table-responsive" style="padding-bottom: 40px !important; margin-top: 30px !important;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Nombre</th>
+                      <th>Dirección</th>
+                      <th>Localidad</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let info of listaEstaciones; let i = index " [attr.data-index]="i">
+                      <td>{{i+1}}</td> 
+                      <td>{{info.nombre}}</td> 
+                      <td>{{info.direccion}}</td> 
+                      <td>{{info.localidad}}</td> 
+                          <td>
+                            <div>                      
+                              <i class="fa fa-search iconAccion" title="Ver detalle" aria-hidden="true" (click)="editar(info.idEstacion)" style="color: #f9b12a !important;"></i>
+                              <i class="fa fa-trash iconAccion" title="Eliminar combinación" aria-hidden="true" (click)="eliminar(info.idEstacion)" style="color: #f13434 !important;"></i>
+                              <button type="button" id="buttonContinuar" data-toggle="modal" data-target="#modalEliminar" style="display:none !important;">
+                              </button>
+                              </div>
+                            </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+         </div>
+
+
+<!-- Modal continuar eliminar registro-->
+<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-keyboard="false"
+  data-backdrop="static" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-question-circle" aria-hidden="true" style="font-size: 30px; margin-right: 15px !important; color: black;"></i>
+        <h3 class="modal-title" style="font-size: 20px !important;">Confirmación</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4 id="modalEliminar" style="font-size: 20px !important;">¿Está seguro de eliminar el registro?</h4>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="aceptar()" style="margin-right: 20px !important; background-color: #B71C1C !important;">Aceptar
+          </button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" style="background-color: #B71C1C !important;">Cancelar
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-</div>
-
-<ngx-loading [show]="loading"></ngx-loading>
-
-<table mdbTable>
-        <thead>
-          <tr>
-            <th *ngFor="let head of displayedColumns" scope="col">{{head}} </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr mdbTableCol *ngFor="let el of listaEstaciones">
-            <th style="text-align: center !important;">{{el.idEstacion}}</th>    
-            <td>{{el.nombre}}</td>
-            <td>{{el.direccion}}</td>
-            <td>{{el.localidad}}</td>
-            <td>
-                <button type="button" class="btn" style="background-color: orange; margin-right: 10px !important;">
-                    <i class="material-icons">edit</i>
-                </button>
-        
-                <a class="waves-effect waves-light btn modal-trigger" (click)="eliminar(el)">
-                    <i class="material-icons">delete</i>  
-                </a>
- 
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              

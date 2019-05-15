@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Estacion } from 'src/app/models/estacion';
-import { RESPONSE_OK } from 'src/app/utils/constantes';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { EstacionService } from 'src/app/services/estacion.service';
 import { TipoEstacionService } from 'src/app/services/tipoEstacion.service';
 import { TipoEstacion } from 'src/app/models/tipoEstacion';
 import { Troncal } from 'src/app/models/troncal';
 import { TroncalService } from 'src/app/services/troncal.service';
 import { ToastrService } from 'ngx-toastr';
+import {SelectItem} from 'primeng/api';
 
 @Component({
     selector: 'app-estacion-crear',
@@ -21,8 +21,8 @@ export class EstacionCrearComponent implements OnInit {
     labelPosition = 'NO';
     nombreTitulo = "";
     isCrear: boolean = false;
-    loading: boolean = false;
-    listaTipoEstacionSelectItem: any[] = [];
+    public loading = false;
+    listaTipoEstacionSelectItem: SelectItem[] = [];
     listaTipoEstaciones: Array<TipoEstacion> = [];
     estacionSelected: Estacion;
     listaTroncalSelectItem: any[] = [];
@@ -31,34 +31,75 @@ export class EstacionCrearComponent implements OnInit {
     listaTipoEstaSel: any[] = [];
     tipoEstacionSel: string;
     troncalSel: string;
-    estacionInicial :string;
-    estacionFinal :string;
+    listaEstacionInicialSelectItem: SelectItem[] = [];
+    listaEstacionFinalSelectItem: SelectItem[] = [];
+    estacionInicial :number;
+    estacionFinal :number;
+    idEstacionEntrada : number;
+
 
     constructor(
         private toastrService: ToastrService,
         private router: Router,
         private estacionService: EstacionService,
         private tipoEstacionService: TipoEstacionService,
-        private troncalService: TroncalService
+        private troncalService: TroncalService,
+        private activatedRoute: ActivatedRoute
     ) { }
 
     ngOnInit() {
+        this.loading = true;
+        this.tipoEstacionSel = null;
         this.estacionSelected = new Estacion();
+        this.cargarListasSiNo();
+        this.obtenerEntradas();
+        this.asignarNombres();
         this.obtenerListasTipoEstaciones();
         this.obtenerListaTroncal();
+        
+        if(!this.isCrear){
+            this.obtenerDatosEstacion();
+        }
+    }
+
+    private asignarNombres(){
+        if(this.isCrear){
+            this.nombreTitulo = "Crear Estación";
+        }else{
+            this.nombreTitulo = "Editar Estación";
+        }
+    }
+
+    private obtenerEntradas(){
         this.isCrear = false;
-        this.nombreTitulo = "Crear Estación";
-        //this.nombreTitulo = "Editar Estación";
-        this.isCrear = false;
-        this.loading = false;
-        this.tipoEstacionSel = null;
+        let sub = this.activatedRoute.params.subscribe(params => {
+             let numero = +params['id'];
+            if(numero == 0){
+                this.isCrear = true;
+            }else{
+                this.idEstacionEntrada = numero;
+            }
+          });
+    }
+
+    private cargarListasSiNo(){
+        this.listaEstacionInicialSelectItem = [];
+        this.listaEstacionInicialSelectItem.push({ label: 'Seleccione', value: null });
+        this.listaEstacionInicialSelectItem.push({ label:'SI', value: 1 });
+        this.listaEstacionInicialSelectItem.push({ label:'NO', value: 0 });
+        this.listaEstacionInicialSelectItem.push();
+
+        this.listaEstacionFinalSelectItem = [];
+        this.listaEstacionFinalSelectItem.push({ label: 'Seleccione', value: null });
+        this.listaEstacionFinalSelectItem.push({ label:'SI', value: 1 });
+        this.listaEstacionFinalSelectItem.push({ label:'NO', value: 0 });
     }
 
 
     private obtenerListasTipoEstaciones() {
         this.tipoEstacionService.getAllTipoEstacion().subscribe(
             data => {
-                this.loading = false;
+                this.loading = true;
                 var getKeysArray = Object.keys(data);
                 var getValueArrayTipoEsta = Object.values(data)[0];
                 
@@ -68,6 +109,7 @@ export class EstacionCrearComponent implements OnInit {
                     }
                     this.cargarListaTipoEsta(this.listaTipoEstacionSelectItem);
                     this.tipoEstacionSel = this.listaTipoEstacionSelectItem[0].value;
+                    this.estacionSelected.idTipoEstacion = this.listaTipoEstacionSelectItem[0].value;
                     this.loading = false;
                 } else {
                     this.loading = false;
@@ -89,6 +131,7 @@ export class EstacionCrearComponent implements OnInit {
 
 
     private obtenerListaTroncal() {
+        this.loading = true;
         this.troncalService.getAllTroncales().subscribe(
             data => {
                 this.loading = true;
@@ -101,6 +144,7 @@ export class EstacionCrearComponent implements OnInit {
                     }
                     this.cargarListaTroncal(this.listaTroncalSelectItem);
                     this.troncalSel = this.listaTroncalSelectItem[0].value;
+                    this.estacionSelected.idTroncal = this.listaTroncalSelectItem[0].value;
                     this.loading = false;
                 } else {
                     this.loading = false;           
@@ -121,50 +165,90 @@ export class EstacionCrearComponent implements OnInit {
     }
 
     private adicionarVariables(){
-        let tipoEstacion = new TipoEstacion();
-        tipoEstacion.idTipoEsta = parseInt(this.tipoEstacionSel+"");
-        this.estacionSelected.tipoEstacion = tipoEstacion;
-        let troncal = new Troncal();
-        troncal.idTroncal = parseInt(this.troncalSel+"");
-        this.estacionSelected.troncal = troncal;
-        if(this.estacionInicial == "SI"){
-            this.estacionSelected.estaIncial = 1;
-        }else{
-            this.estacionSelected.estaIncial = 0;
-        }
-
-        if(this.estacionFinal == "SI"){
-            this.estacionSelected.estaFinal = 1;
-        }else{
-            this.estacionSelected.estaFinal = 0;
-        }
+    this.estacionSelected.estaIncial = this.estacionInicial;
+    this.estacionSelected.estaFinal = this.estacionFinal;
 
     }
 
+    private obtenerDatosEstacion(){
+        this.loading = true;
+        this.estacionService.getEstacionById(this.idEstacionEntrada).subscribe(
+            data => {
+              var getKeysArray = Object.keys(data);
+              var getValueArrayTipoEsta = Object.values(data)[0];
+              
+              if(getValueArrayTipoEsta.length > 0){
+                  for (let i = 0; i < getValueArrayTipoEsta.length; i++) {
+                    this.estacionSelected = getValueArrayTipoEsta[0];  
+                    this.estacionInicial = this.estacionSelected.estaIncial;
+                    this.estacionFinal = this.estacionSelected.estaFinal;                 
+                  }
+                  this.loading = false;
+              } else {
+                  this.loading = false;
+                  this.toastrService.error("Error consultando la estación", "Error");                
+                  }       
+              },error => {
+                  this.loading = false;
+                  this.toastrService.error("Error en el servicio", "Error");
+          }
+        );
+        }
+
     private guardarEstacion() {
+        this.loading = true;
         if (this.validarDatos()) {
             this.adicionarVariables();
-            this.estacionService.createEstacion(this.estacionSelected).subscribe(
-                data => {
-                    this.loading = true;
-                    if(data != null){
-                        this.toastrService.success("Creación exitosa", "Éxito");
-                        this.loading = false;
-                        this.redireccionar();
-                    } else {
-                        this.loading = false;
-                        this.toastrService.error("Error en la respuesta del servicio", "Error");
-                    }
-                },
-                error => {
-                    this.loading = false;
-                    this.toastrService.error("Error en crear la estación", "Error");
-                }
-            );
+            if(this.isCrear){
+                this.servicioCrear();
+            }else{
+                this.servicioEditar();
+            }
         } else {
             this.loading = false;
             this.toastrService.error("Error de Datos", "Error");
         }
+    }
+
+    private servicioCrear(){
+        this.loading = true;
+        this.estacionService.createEstacion(this.estacionSelected).subscribe(
+            data => {
+                if(data != null){
+                    this.limpiarVariables();
+                    this.loading = false;
+                    this.toastrService.success("Creación exitosa", "Éxito");
+                } else {
+                    this.loading = false;
+                    this.toastrService.error("Error en la respuesta del servicio", "Error");
+                }
+            },
+            error => {
+                this.loading = false;
+                this.toastrService.error("Error en crear la estación", "Error");
+            }
+        );
+    }
+
+    private servicioEditar(){
+        this.loading = true;
+        this.estacionService.updateEstacion(this.estacionSelected).subscribe(
+            data => {
+                if(data != null){
+                    this.limpiarVariablesEdicion();
+                    this.loading = false;
+                    this.toastrService.success("Edición exitosa", "Éxito");
+                    this.redireccionarConsultar();
+                } else {
+                    this.loading = false;
+                    this.toastrService.error("Error en la respuesta del servicio", "Error");
+                }
+            },
+            error => {
+                this.loading = false;
+                this.toastrService.error("Error en crear la estación", "Error");
+            }
+        );
     }
 
     private validarDatos() {
@@ -181,22 +265,16 @@ export class EstacionCrearComponent implements OnInit {
         if (!this.estacionSelected.orden) {
             resultado = false;
         }
-        if (!this.estacionSelected.longitud) {
+        if(!this.estacionSelected.idTipoEstacion){
             resultado = false;
         }
-        if (!this.estacionSelected.latitud) {
+        if(!this.estacionSelected.idTroncal){
             resultado = false;
         }
-        if(this.tipoEstacionSel == "0"){
+        if (this.estacionInicial == null) {
             resultado = false;
         }
-        if(this.troncalSel == "0"){
-            resultado = false;
-        }
-        if (!this.estacionInicial) {
-            resultado = false;
-        }
-        if(!this.estacionFinal){
+        if(this.estacionFinal == null){
             resultado = false;
         }
         return resultado;
@@ -204,6 +282,24 @@ export class EstacionCrearComponent implements OnInit {
 
     private redireccionar() {
         this.router.navigate(['/']);
+    }
+
+    private redireccionarConsultar(){
+        this.router.navigate(['/estacion/consultar']);
+    }
+
+    private limpiarVariables(){
+        this.estacionSelected = new Estacion();
+        this.estacionInicial  = null;
+        this.estacionFinal = null;
+    }
+
+    private limpiarVariablesEdicion(){
+        this.estacionSelected = new Estacion();
+        this.estacionInicial  = null;
+        this.estacionFinal = null;
+        this.idEstacionEntrada = null;
+        this.isCrear = false;
     }
 
 }

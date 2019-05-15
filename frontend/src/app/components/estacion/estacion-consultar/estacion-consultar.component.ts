@@ -5,9 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { EstacionService } from 'src/app/services/estacion.service';
 import { Estacion } from 'src/app/models/estacion';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
-
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-estacion-consultar',
@@ -22,47 +21,41 @@ export class EstacionConsultarComponent implements OnInit {
   listaTipoEstaciones: Array<TipoEstacion> = [];
   tipoEstacionSel: string;
   listaEstaciones: Array<Estacion> = [];
-
-  public displayedColumns: string[] = ['Id','nombre', 'Dirección', 'Localidad', 'Opciones'];
-    public dataSource = new MatTableDataSource<Estacion>();
-    //public dataSource : Estaciones[];
-    public selection = new SelectionModel<Estacion>(true, []);
-    filtroAdv:boolean = false;
-    estacionSelect = new Estacion();
-    estacionDelete = new Estacion();
-    
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+  estacionSelect = new Estacion();
+  estacionDelete : number;
+  public rowsOnPage = 10;
     
     constructor(
       private toastrService: ToastrService,
       private tipoEstacionService: TipoEstacionService,
-      private estacionService: EstacionService
-      ) { 
-        //const users = Array.from({length: 100}, (_, k) => createNewEstacion(k + 1));
-       this.dataSource = new MatTableDataSource<Estacion>();
-       
-  }
+      private estacionService: EstacionService,
+      private router: Router,
+      private activatedRoute: ActivatedRoute
+      ) { }
 
   ngOnInit() {
     this.tipoEstacionSel = null;
-    this.dataSource.paginator = this.paginator;
-    this.obtenerListasTipoEstaciones();
-    this.table();
-    
+    this.obtenerListasTipoEstaciones();    
   }
 
   private obtenerListasTipoEstaciones() {
+    this.loading = true;
     this.tipoEstacionService.getAllTipoEstacion().subscribe(
         data => {
-            this.loading = false;
             var getKeysArray = Object.keys(data);
             var getValueArrayTipoEsta = Object.values(data)[0];
             
             if(getValueArrayTipoEsta.length > 0){
                 for (let i = 0; i < getValueArrayTipoEsta.length; i++) {
-                    this.listaTipoEstaciones.push(getValueArrayTipoEsta[i]);                       
+                    this.listaTipoEstaciones.push(getValueArrayTipoEsta[i]);         
                 }
-                this.cargarListaTipoEsta(this.listaTipoEstacionSelectItem);
+
+                this.listaTipoEstacionSelectItem = [];
+                this.listaTipoEstacionSelectItem.push({ label: 'Seleccione', value: 0 });
+                for (var i = 0; i < this.listaTipoEstaciones.length; i++) {
+                  this.listaTipoEstacionSelectItem.push({ label: this.listaTipoEstaciones[i].nombre, value: this.listaTipoEstaciones[i].idTipoEsta });
+                }
+
                 this.tipoEstacionSel = this.listaTipoEstacionSelectItem[0].value;
                 this.loading = false;
             } else {
@@ -76,26 +69,20 @@ export class EstacionConsultarComponent implements OnInit {
     );
 }
 
-private cargarListaTipoEsta(listaSelectItem: any[]) {
-    listaSelectItem.push({ label: 'Seleccione', value: 0 });
-    for (var i = 0; i < this.listaTipoEstaciones.length; i++) {
-        listaSelectItem.push({ label: this.listaTipoEstaciones[i].nombre, value: this.listaTipoEstaciones[i].idTipoEsta });
-    }
-}
 
 private obtenerEstacionByTipoEstacion(){
+  this.loading = true;
   let idTipoEstacion = parseInt(this.tipoEstacionSel+"");
   this.estacionService.getEstacionByTipoEstacion(idTipoEstacion).subscribe(
     data => {
-      this.loading = false;
       var getKeysArray = Object.keys(data);
       var getValueArrayTipoEsta = Object.values(data)[0];
       
+      this.listaEstaciones = [];
       if(getValueArrayTipoEsta.length > 0){
           for (let i = 0; i < getValueArrayTipoEsta.length; i++) {
-              this.listaEstaciones.push(getValueArrayTipoEsta[i]);                       
+            this.listaEstaciones.push(getValueArrayTipoEsta[i]);                       
           }
-          
           this.loading = false;
       } else {
           this.loading = false;
@@ -108,32 +95,35 @@ private obtenerEstacionByTipoEstacion(){
 );
 }
 
-private table(){
-  this.dataSource = new MatTableDataSource<Estacion>(this.listaEstaciones);
-                    if (this.listaEstaciones.length > 0 && !this.filtroAdv) {
-                        this.dataSource.paginator = this.paginator;
-                        this.estacionSelect = this.listaEstaciones[0];
-                    }
+private editar(idEstacion: number){
+  this.router.navigate(['/estacion/administrar/'+idEstacion]);
 }
 
-private eliminar(estacion: Estacion){
-this.estacionDelete = estacion;
-this.aceptar();
+private eliminar(idEstacion: number){
+  this.estacionDelete = idEstacion;
+  document.getElementById("buttonContinuar").click();
 }
 
 private aceptar(){
+  this.loading = true;
   this.estacionService.deleteEstacion(this.estacionDelete).subscribe(
     data => {
         if(data){
-
-        }                     
-       
-       
+          this.limpiarDatos();
+          this.loading = false;
+          this.toastrService.success("Eliminación exitosa", "Éxito");
+        }                            
       },error => {
           this.loading = false;
           this.toastrService.error("Error en el servicio", "Error");
   }
 );
+}
+
+private limpiarDatos(){
+  this.listaEstaciones = [];
+  this.estacionDelete = null;
+  this.tipoEstacionSel = this.listaTipoEstacionSelectItem[0].value;
 }
 
 

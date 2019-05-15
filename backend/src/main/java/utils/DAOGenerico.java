@@ -7,8 +7,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 public class DAOGenerico<T> {
 
@@ -51,16 +54,17 @@ public class DAOGenerico<T> {
     }
 
     public void actualizar(T obj) {
-        EntityManager session = HibernateUtil.getSessionFactory().createEntityManager();
+        Session se = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = se.beginTransaction();
         try {
-            session.getTransaction().begin();
-            session.merge(obj);
-            session.getTransaction().commit();
+            se.update(obj);
+            tx.commit();
+            se.close();
         } catch (Exception e) {
             System.out.println(e);
         } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
+            if (se != null && se.isOpen()) {
+                se.close();
             }
         }
     }

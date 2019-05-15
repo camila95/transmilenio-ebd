@@ -12,8 +12,13 @@ export class ReporteService {
 
   constructor(private http: HttpClient) { }
 
-  getReporte(idEstacion: number, idRutaAlimen: number) {
-    return this.http.get<any>(URL_BASE_API_REST + 'estaciones/' + idEstacion + "/" + idRutaAlimen);
+  getReporteRutaAlimen(idEstacion: number, idRutaAlimen: number) {
+    return this.http.get<Response>(URL_BASE_API_REST + 'reporte/ruta-alimentadora/' + idEstacion + "/" + idRutaAlimen);
+  }
+
+  getReporteRutaTroncal(idEstacion: number, idSentido: number) : Observable<Blob> {
+    const options = { responseType: 'blob' as 'json' }
+    return this.http.get<Blob>(URL_BASE_API_REST + 'reporte/ruta-troncal/' + idEstacion + "/" + idSentido);
   }
 
 }

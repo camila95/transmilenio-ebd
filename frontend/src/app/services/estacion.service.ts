@@ -12,6 +12,13 @@ export class EstacionService {
 
   constructor(private http: HttpClient) { }
 
+  getAllEstaciones(){
+    return this.http.get<Response>(URL_BASE_API_REST + 'estaciones/');
+  }
+
+  getEstacionById(id: number) {
+    return this.http.get<Response>(URL_BASE_API_REST + 'estaciones/' + id);
+  }
 
   getEstacionByTipoEstacion(id: number) {
     return this.http.get<Response>(URL_BASE_API_REST + 'estaciones/idTipoEstacion/' + id);
@@ -28,7 +35,7 @@ export class EstacionService {
   }
 
 
-  deleteEstacion(estacion: Estacion) {
-    return this.http.delete<Response>(URL_BASE_API_REST + 'estaciones/' + estacion);
+  deleteEstacion(idEstacion: number) {
+    return this.http.delete<Response>(URL_BASE_API_REST + 'estaciones/' + idEstacion);
   }
 }

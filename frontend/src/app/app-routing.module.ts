@@ -7,21 +7,23 @@ import { TroncalCrearComponent } from './components/troncal/troncal-crear/tronca
 import { TroncalConsultarComponent } from './components/troncal/troncal-consultar/troncal-consultar.component';
 import { GenerarDatosComponent } from './components/cargar-archivo/generar-datos/generar-datos.component';
 import { ServicioWebComponent } from './components/cargar-archivo/servicio-web/servicio-web.component';
-import { ReportesComponent } from './components/reportes/reportes.component';
 import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archivo.component';
+import { ReporteRutaAlimenComponent } from './components/reportes/ruta-alimen/reporte-ruta-alimen.component';
+import { ReporteRutaTroncalComponent } from './components/reportes/ruta-troncal/reporte-ruta-troncal.component';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: '/inicio', pathMatch: 'full' },
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
-  { path: 'estacion/administrar', component: EstacionCrearComponent },
+  { path: 'estacion/administrar/:id', component: EstacionCrearComponent },
   { path: 'estacion/consultar', component: EstacionConsultarComponent },
   { path: 'troncal/crear', component: TroncalCrearComponent },
   { path: 'troncal/consultar', component: TroncalConsultarComponent },
 
-  { path: 'archivo/generardatos', component: GenerarDatosComponent },
-  { path: 'archivo/servicioweb', component: ServicioWebComponent },
-  { path: 'reportes', component: ReportesComponent },
-  { path: 'archivo/cargararchivo', component: CargarArchivoComponent }
+  { path: 'reporte/ruta-troncal', component: ReporteRutaTroncalComponent },
+  { path: 'reporte/ruta-alimen', component: ReporteRutaAlimenComponent },
+  { path: 'archivo/generar-datos', component: GenerarDatosComponent },
+  { path: 'archivo/servicio-web', component: ServicioWebComponent },
+  { path: 'archivo/cargar-archivo', component: CargarArchivoComponent }
 ];
 
 @NgModule({

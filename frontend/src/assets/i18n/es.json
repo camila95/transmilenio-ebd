@@ -1,0 +1,417 @@
+{
+    "global": {
+        "mensajes": {
+            "campoRequerido": "El campo es requerido",
+            "archivoSuperaLimite": "El tamaño del archivo es de m\u00E1ximo {{value}}MB",
+            "formatoArchivoInvalido": "Solo se admiten archivos con formato: {{value}}",
+            "confirmacion": "Confirmaci\u00F3n",
+            "confirmarEliminado": "\u00BFEst\u00E1 seguro de eliminar este registro\u003F",
+            "campoErrorFormato": "El valor ingresado no es v\u00E1lido",
+            "errorCarga": "Error cargando la informaci\u00F3n",
+            "errorGuardado": "Se ha presentado un error guardando la informaci\u00F3n"
+        },
+        "seleccionar": "Seleccionar",
+        "paginador": {
+            "primero": "Primero",
+            "anterior": "Anterior",
+            "siguiente": "Siguiente",
+            "ultimo": "Ultimo"
+        },
+        "estados": {
+            "activo": "Activo",
+            "inactivo": "Inactivo"
+        },
+        "botones": {
+            "registrar": "Registrar",
+            "limpiar": "Limpiar",
+            "aceptar": "Aceptar",
+            "agregar": "Agregar Acción",
+            "cancelar": "Cancelar",
+            "cargarArchivo": "Cargar Archivo",
+            "volver": "Volver",
+            "continuarGuardado": "Continuar el guardado",
+            "consultar": "Consultar",
+            "guardar": "Guardar",
+            "cerrarCaso": "Cerrar Caso",
+            "si": "Si",
+            "no": "No"
+        },
+        "tablas": {
+            "acciones": "Herramientas"
+        }
+    },
+    "header": {
+        "siuce": "Sistema de Informaci\u00F3n Unificado de Convivencia - SIUCE",
+        "version": "v0.6.6 Abril 22 de 2019"
+    },
+    "footer": {
+        "direccion": "Direcci\u00F3n Ministerio de Educaci\u00F3n: Calle 43 No. 57 - 14. Centro Administrativo Nacional, CAN, Bogot\u00E1.",
+        "horario": "Horario de atenci\u00F3n: Lunes a viernes de 8:00 a.m. a 5:00 p.m.",
+        "codigoPostal": "C\u00F3digo Postal para la Rep\u00FAblica de Colombia: 111321 NIT 899999001-7",
+        "lineaAtencion": "L\u00EDnea gratuita fuera de Bogot\u00E1: 01-8000-910122.<br>L\u00EDnea Bogot\u00E1 +57 (1) 3078079.\t\t<br /> Conmutador: +57 (1) 2222800.<br> Fax: +57 (1) 2224953",
+        "lineaBogota": "L\u00EDnea Bogot\u00E1: 489 0400",
+        "correoElectonico": "Correo electr\u00F3nico para soporte t\u00E9cnico en temas relacionados con sistemas de informaci\u00F3n",
+        "soporteTecnico": "Aplicaci\u00F3n en l\u00EDnea para soporte t\u00E9cnico en temas relacionados con sistemas de informaci\u00F3n",
+        "chatCiudadano": "Chat de atenci\u00F3n al ciudadano. Lunes a viernes de 8:00 a.m. a 5:00 p.m. Chat mesa de ayuda.",
+        "buzonNotificaciones": "Buz\u00F3n de notificaciones judiciales.",
+        "entidadesAdscritas": "Entidades adscritas",
+        "serviciosConsulta": "Servicios de consulta",
+        "entidadesVinculadas": "Entidades vinculadas"
+    },
+    "cus": {
+        "registrarCaso": {
+            "etiquetas": {
+                "departamento": "Departamento:",
+                "municipio": "Municipio:",
+                "establecimientoEducativo": "Establecimiento Educativo:",
+                "nombreApellido": "Nombres y Apellidos:",
+                "fechaOcurrencia": "Fecha de Ocurrencia:",
+                "lugar": "Lugar:",
+                "descripcion": "Descripci\u00F3n:",
+                "archivo": "Archivo:"
+            },
+            "botones": {
+                "registrar": "Registrar"
+            },
+            "mensajes": {
+                "archivoSuperaLimite": "El tamaño del archivo es de m\u00E1ximo 5MB",
+                "fechaMayorActual": "La fecha no puede ser mayor a la fecha actual"
+            }
+        },
+        "administrarUsuarios": {
+            "etiquetas": {
+                "titulo": "Administrar Usuarios",
+                "tipoUsuario": "Tipo de Usuario:",
+                "entidades": "Entidades:",
+                "departamento": "Departamento:",
+                "municipio": "Municipio:",
+                "rol": "Rol",
+                "nombreCompleto": "Nombre Completo",
+                "usuario": "Usuario",
+                "email": "Email",
+                "estado": "Estado",
+                "ultimoIngreso": "\u00DAltimo Ingreso",
+                "ingreso": "Registro",
+                "herramientas": "Herramientas"
+            },
+            "botones": {
+                "salir": "Salir",
+                "filtrar": "Filtrar",
+                "crearUsuario": "Crear Usuario"
+            },
+            "mensajes": {
+                "noRegistrosAsociados": "No se encontraron registros con los filtros ingresados"
+            }
+        },
+        "cargueMasivo": {
+            "cargueMasivo": "Cargue masivo",
+            "secretaria": "Secretar\u00EDa",
+            "numero": "N\u00FAmero",
+            "fechaInicio": "Fecha de inicio",
+            "fechaFin": "Fecha de finalizaci\u00F3n",
+            "registrosCreados": "Registros creados",
+            "registrosDescartados": "Registros descartados"
+        },
+        "regitrarCasoConvivenciaEscolar": {
+            "etiquetas": {
+                "titulo": "Registro Caso {{situacionConvivencia}}",
+                "numeroCaso": "N\u00FAmero del caso",
+                "tipoInvolucrado": "Tipo de Involucrado",
+                "nombres": "Nombres y Apellidos",
+                "tipoIdentificacion": "Tipo de Identificaci\u00F3n",
+                "numeroIdentificacion": "N\u00FAmero de Identificaci\u00F3n",
+                "rol": "Rol",
+                "establecimientoEducativo": "Establecimiento Educativo",
+                "grado": "Grado",
+                "panelInvolucrados": {
+                    "titulo": "Involucrados",
+                    "descripcion": "Agregar Implicados en la Situaci\u00F3n de Convivencia",
+                    "busquedaEstudiantes": "B\u00FAsqueda Estudiantes"
+                },
+                "panelSituaciones": {
+                    "situaciones": "Situaci\u00F3n",
+                    "panelSituaciones": "Registre las circunstancias de modo, tiempo y lugar en la que se presento la situaci\u00F3n de convivencia"
+                },
+                "panelAcciones": {
+                    "acciones": "Acciones",
+                    "descripcionPanel": "Registre las actividades de abordaje de la Situaci\u00F3n de Convivencia Escolar",
+                    "entidad": "Entidad",
+                    "fechaSolicitud": "Fecha de solicitud",
+                    "descripcion": "Descripci\u00F3n",
+                    "seguimiento": "Seguimiento"
+                }
+            },
+            "botones": {
+                "agregarAccion": "Agregar acci\u00F3n",
+                "agregarInvolucrado": "Agregar Involucrado",
+                "guardar": "Guardar",
+                "guardadoParcial": "Guardado parcial"
+            },
+            "modales": {
+                "involucrados": {
+                    "header": "Agregar Involucrado",
+                    "editar": "Editar Involucrado",
+                    "ver": "Ver Involucrado"
+                },
+                "detalleInvolucrados": {
+                    "header": "Información Estudiantes"
+                },
+                "acciones": {
+                    "header": "Agregar acci\u00F3n",
+                    "modalDescripcion": "Para crear una acci\u00F3n, diligencie la informaci\u00F3n solicitada a continuaci\u00F3n",
+                    "entidad": "Entidad:",
+                    "fechaSolicitud": "Fecha de solicitud:",
+                    "descripcion": "Descripci\u00F3n:",
+                    "agregarAccion": "Agregar acci\u00F3n"
+                },
+                "mensajes": {
+                    "noEntidadPorTipo": "No se encontr\u00F3 la entidad para el tipo seleccionado",
+                    "entidadYaSeleccionada": "La entidad seleccionada ya se encuentra dentro de la lista de acciones",
+                    "estudianteNoEncontrado": "No existe estudiante con la informaci\u00F3n diligenciada.",
+                    "rolVictimaAdicionado": "Solo se permite un rol v\u00EDctima dentro de los involucrados",
+                    "involucradoYaExiste": "El involucrado con tipo de identificaci\u00F3n y n\u00FAmero de identificaci\u00F3n ingresados, ya se encuentra relacionado",
+                    "rolAgresor": "El agresor ya existe"
+                },
+                "casoSimilar": {
+                    "labelHeader": "Existe una situaci\u00F3n de convivencia ya reportada con informaci\u00F3n similar para los campos: Involucrados, Categor\u00EDa de violencia y Tipo de agresi\u00F3n",
+                    "panelSituacion": "Situaci\u00F3n",
+                    "infoCaso": "Informaci\u00f3n del caso",
+                    "panelAcciones": "Acciones",
+                    "idCaso": "Identificador del caso:",
+                    "fechaRegistro": "Fecha Registro:",
+                    "fechaOcurrencia": "Fecha de Ocurrencia:",
+                    "descripcion": "Descripci\u00F3n:"
+                },
+                "casoTipoTres": {
+                    "labelHeader": "El caso situaci\u00F3n de convivencia escolar se tipifica como tipo III, \u0022Presunto Delito\u0022. Se asocia una acci\u00F3n de atenci\u00F3n con la entidad Polic\u00EDa de Infancia y Adolescencia."
+                }
+            },
+            "mensajes": {
+                "sinInvolucrados": "No existen involucrados asociados al caso de convivencia escolar.",
+                "sinAcciones": "No existen acciones asociadas al caso de convivencia escolar",
+                "errorGuardado": "Se ha presentado un error guardando la informaci\u00F3n"
+            }
+        },
+        "consultarCaso": {
+            "etiquetas": {
+                "titulo": "Consulta caso {{situacionConvivencia}} {{idCaso}}"
+            }
+        },
+        "seguimientoAccion": {
+            "titulo": "Seguimiento de casos",
+            "secciones": {
+                "acciones": "Acciones",
+                "seguimiento": "Seguimiento"
+            }
+        },
+        "verCasoConvivenciaEscolar": {
+            "etiquetas": {
+                "titulo": "Registros de Casos An\u00F3nimos",
+                "noRegistros": "No existen registros",
+                "idCasoAnonimo": "Id del Caso",
+                "fechaRegistro": "Fecha Registro",
+                "municipio": "Municipio",
+                "establecimientoEducativo": "Establecimiento Educativo",
+                "nombreEstudiante": "Nombre",
+                "lugar": "Lugar",
+                "fechaOcurrencia": "Fecha Ocurrencia",
+                "opciones": "Herramientas",
+                "estado": "Estado"
+            }
+        },
+        "casosPreregistro": {
+            "etiquetas": {
+                "casosPreregistro": "Casos en Pre-registro",
+                "tipoCaso": "Tipo de Caso",
+                "establecimientoEducativo": "Establecimiento Educativo",
+                "nombresApellidosInvolucrado": "Nombres y apellidos de involucrado (v\u00EDctima)",
+                "tipoIdentificacion": "Tipo de identificaci\u00F3n",
+                "numeroIdentificacion": "N\u00FAmero de identificaci\u00F3n",
+                "accion": "Herramientas",
+                "identificador": "N\u00FAmero del caso"
+            },
+            "botones": {
+                "agregarSituacionConvivencia": "Situaci\u00F3n de Convivencia",
+                "agregarConsumoSustancias": "Consumo de Sustancias",
+                "agregarEmbarazoAdolescente": "Embarazo Adolescente"
+            },
+            "mensajes": {
+                "deseaEliminarCasoPreregistro": "\u00BFEst\u00E1 seguro que desea eliminar el caso de convivencia en pre-registro\u003F",
+                "eliminacionCasoPreregistro": "Se ha eliminado correctamente el caso de convivencia en pre-registro"
+            }
+        },
+        "detallarCasoConvivenciaEscolar": {
+            "etiquetas": {
+                "justificacion": "Justificaci\u00F3n:"
+            },
+            "botones": {
+                "cancelar": "Cancelar",
+                "aceptar": "Aceptar",
+                "tipificarCaso": "TIPIFICAR CASO",
+                "cerrarCaso": "CERRAR CASO"
+            },
+            "mensajes": {
+                "seleccionarOpciones": "Seleccione alguna de las situaciones de convivencia listadas a continuaci\u00F3n:",
+                "cerrarCaso": "¿Esta seguro que desea cerrar el caso?"
+            }
+        },
+        "seleccionEstablecimiento": {
+            "etiquetas": {
+                "seleccionarEstablecimiento": "Seleccionar establecimiento educativo"
+            }
+        },
+        "editarMensajeAyuda": {
+            "etiquetas": {
+                "editarMensaje": "Editar mensajes aplicaci\u00F3n"
+            }
+        },
+        "editarMensajeNotificacion": {
+            "etiquetas": {
+                "editarMensaje": "Editar mensajes notificaci\u00F3n"
+            }
+        },
+        "consultarCasoConvivencia": {
+            "etiquetas": {
+                "consultarCasosConvivencia": "Consultar casos de convivencia",
+                "establecimientoEducativo": "Establecimiento educativo",
+                "criteriosBusqueda": "Criterios de B\u00FAsqueda",
+                "casosConvivenciaEscolar": "Casos de Convivencia Escolar",
+                "idCaso": "N\u00FAmero del caso",
+                "tipoCaso": "Tipo de caso",
+                "involucrados": "Involucrados",
+                "grado": "Grado",
+                "lugar": "Lugar de ocurrencia",
+                "fechaOcurrencia": "Fecha ocurrencia",
+                "fechaRegistro": "Fecha registro",
+                "herramientas": "Herramientas"
+            }
+        },
+        "parametrizarTiemposAlertas": {
+            "etiquetas": {
+                "parametrizarTiemposAlertas": "Parametrizar Tiempos Alertas",
+                "parametrizacionTiemposAlertas": "Parametrizaci\u00F3n Tiempos Alertas"
+            },
+            "mensajes": {
+                "validacionDias": "Debe ser menor o igual a 360",
+                "validacionSemanas": "Debe ser menor o igual a 52"
+            }
+        },
+        "reporte": {
+            "etiquetas": {
+                "titulo": "Generar Reportes",
+                "reporte": "Reporte",
+                "fecha_inicio": "Fecha Inicio",
+                "fecha_fin": "Fecha Fin"
+            },
+            "botones": {
+                "generar_reporte": "Generar Reporte"
+            }
+        },
+        "cerrarCasoCOnvivencia": {
+            "etiquetas": {
+                "cierreCaso": "Cierre caso convivencia escolar",
+                "aplico": "Aplic\u00F3",
+                "procesoFinalizado": "¿Proceso finalizado?",
+                "titulo": "Cerrar Caso de Convivencia {{idSituacion}}"
+            },
+            "botones": {
+                "generar_reporte": "Generar Reporte"
+            }
+        },
+        "componentes": {
+            "situacionesConvivencia": {
+                "otro": "Otro"
+            },
+            "seguimiento": {
+                "seccion": {
+                    "titulo": "Hist\u00F3rico de seguimientos"
+                },
+                "tabla": {
+                    "fechaSolicitud": "Fecha de Seguimiento",
+                    "entidad": "Entidad",
+                    "descripcion": "Descripci\u00F3n",
+                    "archivo": "Archivo"
+                }
+            }
+        },
+        "crearUsuario": {
+            "numeroIdentificacion": "N\u00FAmero de Identificaci\u00F3n",
+            "correoElectronico": "Correo Electr\u00F3nico",
+            "tipoIdentificacion": "Tipo Identificaci\u00F3n",
+            "ubicacion": "Ubicaci\u00F3n",
+            "secretaria": "Secretar\u00EDa"
+        },
+        "edicionParametro": {
+            "seleccioneParametro": "Seleccione par\u00e1metro",
+            "editarParametros": "Editar par\u00e1metros"
+        },
+        "parametrosPorSituacion": {
+            "titulo": "Par\u00e1metros por situaci\u00F3n",
+            "campos": {
+                "situacionConvivencia": "Situaci\u00F3n de convivencia"
+            },
+            "tabla": {
+                "parametro": "Par\u00e1metro",
+                "obligatorio": "Obligatorio",
+                "estado": "Estado",
+                "acciones": "Herramientas"
+            }
+        },
+        "combinaciones": {
+            "titulo": "Combinaciones Par\u00e1metros Situaci\u00F3n Tipo III",
+            "campos": {
+                "situacionConvivencia": "Situaci\u00F3n de convivencia"
+            },
+            "tabla": {
+                "id_combinacion": "Id Combinaci\u00F3n",
+                "acciones": "Herramientas"
+            }
+        },
+        "registrar_combinaciones": {
+            "titulo": "Registro de Par\u00e1metros Situaci\u00F3n Tipo III",
+            "campos": {
+                "situacionConvivencia": "Situaci\u00F3n de Convivencia:",
+                "id_combinacion": "Id Combinaci\u00F3n:"
+            },
+            "tabla": {
+                "parametro": "Par\u00e1metro",
+                "valor": "Valor",
+                "accion": "Herramientas"
+            }
+        },
+        "dependenciasParametros": {
+            "titulo": "Dependencia",
+            "situacionConvivencia": "Situaci\u00F3n de convivencia:",
+            "parametro": "Par\u00e1metro dependiente:",
+            "tabla": {
+                "dependenciaParametro": "Dependencia par\u00e1metro",
+                "depende": "Depende",
+                "valor": "Valor"
+            }
+        },
+        "parametrosSistema": {
+            "titulo": "Párametros del sistema",
+            "tabla": {
+                "Dominio": "Dominio",
+                "nombre": "Nombre"
+            },
+            "botones": {
+                "recargar": "Recargar"
+            }
+        },
+        "formularioCierre": {
+            "titulo": "Formulario de cierre por Situaci\u00F3n",
+            "botones": {
+                "guardar": "Guardar",
+                "cancelar": "Cancelar"
+            },
+            "tabla": {
+                "ciereCaso": "Cierre Caso de Convivencia Escolar",
+                "obligatorio": " Obligatorio ",
+                "obligatorioTipoIII": " Mostrar para Tipo III ",
+                "estado": " Estado ",
+                "herramientas": "Herramientas"
+            }
+        }
+    }
+}

@@ -10,7 +10,6 @@ import { EncabezadoComponent } from './components/encabezado/encabezado.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EstacionCrearComponent } from './components/estacion/estacion-crear/estacion-crear.component';
 import { EstacionConsultarComponent } from './components/estacion/estacion-consultar/estacion-consultar.component';
-import { MaterialModule } from 'src/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule, ToastContainerModule  } from 'ngx-toastr';
 import { TroncalComponent } from './components/troncal/troncal.component';
@@ -18,16 +17,16 @@ import { TroncalCrearComponent } from './components/troncal/troncal-crear/tronca
 import { TroncalConsultarComponent } from './components/troncal/troncal-consultar/troncal-consultar.component';
 import { GenerarDatosComponent } from './components/cargar-archivo/generar-datos/generar-datos.component';
 import { ServicioWebComponent } from './components/cargar-archivo/servicio-web/servicio-web.component';
-import { ReportesComponent } from './components/reportes/reportes.component';
 import { CargarArchivoComponent } from './components/cargar-archivo/cargar-archivo.component';
 import { HttpModule } from '@angular/http';
 import { NgxLoadingModule } from 'ngx-loading';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
-
+import { DataTablesModule } from 'angular-datatables';
+import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { ReporteRutaTroncalComponent } from './components/reportes/ruta-troncal/reporte-ruta-troncal.component';
+import { ReporteRutaAlimenComponent } from './components/reportes/ruta-alimen/reporte-ruta-alimen.component';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,8 @@ import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableMo
     TroncalConsultarComponent,
     GenerarDatosComponent,
     ServicioWebComponent,
-    ReportesComponent,
+    ReporteRutaTroncalComponent,
+    ReporteRutaAlimenComponent,
     CargarArchivoComponent
 
   ],
@@ -53,21 +53,19 @@ import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableMo
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    DataTablesModule,
+    DropdownModule,
+    TableModule,
+    DataTablesModule,
+    PaginatorModule,
+    FilterPipeModule,
     NgxLoadingModule.forRoot({}),
     ToastrModule.forRoot({
       timeOut: 7000,
       preventDuplicates: true
     }),
-    ToastContainerModule,
-    MatInputModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatTableModule,
-    MatSelectModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatProgressSpinnerModule 
+    ToastContainerModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
