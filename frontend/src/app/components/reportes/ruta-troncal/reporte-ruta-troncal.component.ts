@@ -7,12 +7,14 @@ import { ToastrService } from 'ngx-toastr';
 import { EstacionService } from 'src/app/services/estacion.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { saveAs } from 'file-saver';
+import { ConsultaRutaTroncalDTO } from 'src/app/models/dto/consultaRutaTroncalDTO';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
     selector: 'app-reporte-ruta-troncal',
     templateUrl: './reporte-ruta-troncal.component.html',
     styleUrls: ['./reporte-ruta-troncal.component.css'],
-    providers: [EstacionService, ReporteService]
+    providers: [EstacionService, ReporteService, ExcelService]
   })
   export class ReporteRutaTroncalComponent implements OnInit {
 
@@ -22,13 +24,15 @@ import { saveAs } from 'file-saver';
     estacionSel : number;
     listaSentidoSelectItem: SelectItem[] = [];
     sentidoSel: number;
+    listaReporteAlimen : Array<ConsultaRutaTroncalDTO> = [];
 
     constructor(
       private  reporteService: ReporteService,
       private toastrService: ToastrService,
       private estacionService: EstacionService,
       private router: Router,
-      private activatedRoute: ActivatedRoute) {
+      private activatedRoute: ActivatedRoute,
+      private excelService:ExcelService) {
     }
 
 
@@ -94,25 +98,26 @@ import { saveAs } from 'file-saver';
       if(this.validarDatos()){
         this.reporteService.getReporteRutaTroncal(this.estacionSel,this.sentidoSel).subscribe(
           data => {
-              this.loading = true;
-              let file = new Blob([data], { type: 'application/octet-stream' });
-              const iframe = document.createElement('iframe');
-              iframe.style.display = 'none';
-              iframe.src = URL.createObjectURL(file);
-              document.body.appendChild(iframe);
-              iframe.contentWindow.print();
-              /*
-              var FileSaver = require('file-saver');
-              let file = new Blob([data], { type: 'application/octet-stream' });
-              FileSaver.saveAs(data, file);
-              var fileURL = URL.createObjectURL(data);
-              window.open(fileURL);*/
+            var getKeysArray = Object.keys(data);
+            var getValueArrayReporteRutaAlimen = Object.values(data)[0];
+      
+            this.listaReporteAlimen = []; 
+            if(getValueArrayReporteRutaAlimen.length > 0){
+              for (let i = 0; i < getValueArrayReporteRutaAlimen.length; i++) {
+                this.listaReporteAlimen.push(getValueArrayReporteRutaAlimen[i]);         
+              }
+
+              this.excelService.exportAsExcelFile(this.listaReporteAlimen, 'rutas-Troncales');
+
               this.loading = false;
-            },
-            error => {
-                //this.toastrService.error(error.text, "Error");
-            }
-        );
+            } else {
+              this.loading = false;
+              this.toastrService.error("No se encontraron registros", "Error");                
+              }  
+          },error => {
+            this.loading = false;
+            this.toastrService.error("Error en el servicio", "Error");
+          });
        }
     }
 

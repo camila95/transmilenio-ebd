@@ -8,7 +8,10 @@ import modelos.Operador;
 import com.google.gson.Gson;
 
 import utils.DAOGenerico;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class OperadorAPI {
 

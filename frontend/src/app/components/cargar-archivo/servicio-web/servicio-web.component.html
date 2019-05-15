@@ -9,7 +9,7 @@
           <div class="col-md-6 col-sm-6 col-xs-12">
             <label for="reporte">Tabla</label>
               <span class="text-danger">*</span>
-                <p-dropdown [options]="listaTablaSelectItem" [(ngModel)]="tablaSel" [style]="{'width':'150px'}" (onClick)=obtenerListasRutaAlimen()>
+                <p-dropdown [options]="listaTablaSelectItem" [(ngModel)]="tablaSel" [style]="{'width':'150px'}">
                 <ng-template let-item pTemplate="item"> 
                   <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
                     <div>{{item.label}}</div> 
@@ -24,7 +24,7 @@
               <div class="col-md-5 col-sm-5 col-xs-11">
                  <fieldset id="borde">
                     <legend id="leyenda">MySQL</legend>
-                    <p>Número de registros existentes:</p>
+                    <p>Número de registros existentes: {{numero}}</p>
                     <img class="" src="assets/images/mySql.png" style="width: 50% !important; margin-left: 27% !important;">
                     <div class="col-xs-12 grupo_botones" style="text-align: center !important;">
                         <button type="button" class="btn btn-primary" (click)="obtenerRegistros()">Obtener
@@ -39,7 +39,7 @@
                   <div class="col-md-5 col-sm-5 col-xs-11">
                      <fieldset id="borde">
                         <legend id="leyenda">Oracle</legend>
-                        <p>Número de registros a insertar:</p>
+                        <p>Número de registros a insertar: {{numero}}</p>
                         <img class="" width="650" src="assets/images/oracle.png" style="width: 50% !important; margin-left: 25% !important;">
                         <div class="col-xs-12 grupo_botones" style="text-align: center !important;">
                               <button type="button" class="btn btn-primary" (click)="insertarRegistros()">Insertar

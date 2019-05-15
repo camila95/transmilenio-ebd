@@ -18,28 +18,14 @@ import java.sql.ResultSet;
 
 import modelos.Estacion;
 import com.google.gson.Gson;
-
-import org.dom4j.Branch;
-import org.hibernate.Session;
 import utils.ConsultaAlimenDTO;
 import utils.ConsultaTroncalDTO;
-import utils.DAOGenerico;
-import utils.HibernateUtil;
-import utils.JsonTransformer;
-
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReporteAPI {
 
@@ -99,6 +85,7 @@ public class ReporteAPI {
             String response = "";
             BigDecimal idEstacion = new BigDecimal(req.params(":idEstacion"));
             BigDecimal idSentido = new BigDecimal(req.params(":idSentido"));
+            Map<String, List<ConsultaTroncalDTO>> result = new HashMap<>();
             List<ConsultaTroncalDTO> lista = new ArrayList<>();
 
             String sentido = obtenerSentido(idSentido);
@@ -136,14 +123,15 @@ public class ReporteAPI {
                     dto.setHoraFin(rs.getString(8));
                     lista.add(dto);
                 }
-                response = new Gson().toJson(lista);
+                result.put("lista", lista);
+                response = new Gson().toJson(result);
                 ps.close();
                 c.close();
             } catch (Exception e) {
                 res.status(404);
             }
 
-            return obtenerArchivo(lista);
+            return response;
         });
     }
 
@@ -188,51 +176,6 @@ public class ReporteAPI {
             break;
         }
         return sentido;
-    }
-
-    public static byte[] obtenerArchivo(List<ConsultaTroncalDTO> lista) {
-        /*
-         * FileWriter fw = new FileWriter("./datos.txt"); BufferedWriter bw = new
-         * BufferedWriter(fw); for (int i = 0; i < lista.size(); i++) {
-         * bw.write(lista.get(i).getNombreEstacion()); bw.newLine(); } bw.close();
-         */
-        byte[] bytes = {};
-
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Employee Data");
-
-        Map<String, Object[]> data = new TreeMap<String, Object[]>();
-        data.put("1", new Object[] { "ID", "NAME", "LASTNAME" });
-        data.put("2", new Object[] { 1, "Amit", "Shukla" });
-        data.put("3", new Object[] { 2, "Lokesh", "Gupta" });
-        data.put("4", new Object[] { 3, "John", "Adwards" });
-        data.put("5", new Object[] { 4, "Brian", "Schultz" });
-
-        Set<String> keyset = data.keySet();
-        int rownum = 0;
-        for (String key : keyset) {
-            Row row = sheet.createRow(rownum++);
-            Object[] objArr = data.get(key);
-            int cellnum = 0;
-            for (Object obj : objArr) {
-                Cell cell = row.createCell(cellnum++);
-                if (obj instanceof String)
-                    cell.setCellValue((String) obj);
-                else if (obj instanceof Integer)
-                    cell.setCellValue((Integer) obj);
-            }
-        }
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try {
-            workbook.write(bos);
-            bos.close();
-            System.out.println("howtodoinjava_demo.xlsx written successfully on disk.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        bytes = bos.toByteArray();
-        return bytes;
     }
 
 }

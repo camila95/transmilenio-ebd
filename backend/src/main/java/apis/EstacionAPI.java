@@ -92,14 +92,14 @@ public class EstacionAPI {
 
         post("/", (req, res) -> {
             EstacionDTO estacionDTO = new Gson().fromJson(req.body(), EstacionDTO.class);
-            Estacion estacion = converseDtoTOEntity(estacionDTO);
+            Estacion estacion = converseDtoTOEntity(estacionDTO, false);
             DAOGenerico<Estacion> dao = new DAOGenerico<Estacion>(Estacion.class);
             dao.insertar(estacion);
             return new Gson().toJson(estacion.toMap());
         });
         put("/", (req, res) -> {
             EstacionDTO estacionReq = new Gson().fromJson(req.body(), EstacionDTO.class);
-            Estacion estacion = converseDtoTOEntity(estacionReq);
+            Estacion estacion = converseDtoTOEntity(estacionReq, true);
             DAOGenerico<Estacion> dao = new DAOGenerico<Estacion>(Estacion.class);
             String response = "{}";
             try {
@@ -126,8 +126,11 @@ public class EstacionAPI {
         });
     }
 
-    public static Estacion converseDtoTOEntity(EstacionDTO estacionDTO) {
+    public static Estacion converseDtoTOEntity(EstacionDTO estacionDTO, Boolean isEditar) {
         Estacion estacion = new Estacion();
+        if (isEditar) {
+            estacion.setIdEstacion(estacionDTO.getIdEstacion());
+        }
         estacion.setNombre(estacionDTO.getNombre());
         estacion.setDireccion(estacionDTO.getDireccion());
         estacion.setLocalidad(estacionDTO.getLocalidad());
