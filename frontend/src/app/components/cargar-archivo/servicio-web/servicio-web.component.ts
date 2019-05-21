@@ -21,6 +21,9 @@ export class ServicioWebComponent implements OnInit {
   tablaSel : number;
   lista: any = [];
   numero: number;
+  private infoInsertar: any = {
+    listaOperadores: null
+  }
   
   constructor(
     private webServices: WebService,
@@ -108,20 +111,19 @@ export class ServicioWebComponent implements OnInit {
     this.loading = true;
     if(this.validarTabla()){
       if(this.tablaSel == 2){
-        for (let i = 0; i < this.listaOperador.length; i++) {
-        this.webServices.insertarDatosOperadorOracle(this.listaOperador[i]).subscribe(
+        this.infoInsertar.listaOperadores = this.listaOperador;
+        this.webServices.insertarDatosOperadorOracle(this.infoInsertar).subscribe(
           data => {
             if(data != null){
-              if(i==this.numero){
+                this.tablaSel = 0;
+                this.numero = 0;
                 this.loading = false;
                 this.toastrService.success("Creación exitosa", "Éxito");
-              }
             }
           },error => {
             this.loading = false;
             this.toastrService.error("Error en insertar en la tabla Operador", "Error");
           }); 
-        }
       }
 
         if(this.tablaSel == 4){

@@ -28,8 +28,8 @@ export class WebService {
     return this.http.get<Response>(URL_BASE_API_REST_MY_SQL + '/masivo/tipo-estacion/');
   }
 
-  insertarDatosOperadorOracle(operador: Operador){
-    return this.http.post<Response>(URL_BASE_API_REST + '/operador/', operador);
+  insertarDatosOperadorOracle(mapOperador: any){
+    return this.http.post<Response>(URL_BASE_API_REST + '/operador/insertar-lista/', mapOperador);
   }
 
 }
